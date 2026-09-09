@@ -43,7 +43,7 @@ public class LocalizeController : MonoBehaviour
         map.MapLocalized += LocalizeMap;
         map.MapStopLocalize += StopLocalizeMap;
 
-        if (inputID.text.Length < 0)
+        if (inputID.text.Length == 0)
         {
             inputID.text = PlayerPrefs.GetString("MapID", "");
             inputName.text = PlayerPrefs.GetString("MapName", "");
