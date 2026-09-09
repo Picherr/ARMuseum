@@ -183,10 +183,8 @@ public class GameController : MonoBehaviour
             AudioOn.SetActive(true);
         }
         sprite1 = Resources.Load<Sprite>(Path1) as Sprite;
-        Instantiate(sprite1);
         AudioBtn.image.sprite = sprite1;
         sprite2 = Resources.Load<Sprite>(Path2) as Sprite;
-        Instantiate(sprite2);
         SpriteState spriteState = new SpriteState();
         spriteState.pressedSprite = sprite2;
         AudioBtn.spriteState = spriteState;
