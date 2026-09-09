@@ -1795,8 +1795,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handleAudioToggle: 1
   AudioOn: {fileID: 770979760}
   AudioOff: {fileID: 719707546}
+  audioButton: {fileID: 1139437528}
 --- !u!114 &865517529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1905,6 +1907,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1728491335}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1139437528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2755671164091507254, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+  m_PrefabInstance: {fileID: 1728491335}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728491339}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}

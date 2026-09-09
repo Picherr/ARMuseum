@@ -11,20 +11,21 @@ namespace ARMuseum
         public GameObject[] imagetarget;
         public GameObject WireFramePanel;
 
+        [SerializeField] private GameObject introImage1;
+
         private void Update()
         {
             if (imagetarget == null || imagetarget.Length == 0)
                 return;
 
-            string path = "/UI/Canvas/WireFramePanel/WireFrame/IntroImage1";
             if (imagetarget[0].activeSelf)
             {
                 WireFramePanel.SetActive(true);
-                GameObject.Find(path).SetActive(true);
+                introImage1.SetActive(true);
             }
-            else if (!imagetarget[0].activeSelf && GameObject.Find(path).activeSelf)
+            else if (!imagetarget[0].activeSelf && introImage1.activeSelf)
             {
-                GameObject.Find(path).SetActive(false);
+                introImage1.SetActive(false);
                 WireFramePanel.SetActive(false);
             }
         }

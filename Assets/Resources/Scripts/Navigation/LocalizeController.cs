@@ -13,13 +13,13 @@ namespace ARMuseum
         private SparseSpatialMapWorkerFrameFilter mapWorker;
         private SparseSpatialMapController map;
 
-        private Text UIText;
-        private InputField inputID;
-        private InputField inputName;
-
-        private Button btnStart;
-        private Button btnStop;
-        private Button btnLoad;
+        [SerializeField] private Transform panel;
+        [SerializeField] private Text UIText;
+        [SerializeField] private InputField inputID;
+        [SerializeField] private InputField inputName;
+        [SerializeField] private Button btnStart;
+        [SerializeField] private Button btnStop;
+        [SerializeField] private Button btnLoad;
 
         // Start is called before the first frame update
         void Start()
@@ -27,15 +27,6 @@ namespace ARMuseum
             session = FindObjectOfType<ARSession>();
             mapWorker = FindObjectOfType<SparseSpatialMapWorkerFrameFilter>();
             map = FindObjectOfType<SparseSpatialMapController>();
-
-            Transform panel = GameObject.Find("/Canvas/Panel").transform;
-
-            UIText = panel.Find("Text").GetComponent<Text>();
-            inputID = panel.Find("InputFieldID").GetComponent<InputField>();
-            inputName = panel.Find("InputFieldName").GetComponent<InputField>();
-            btnStart = panel.Find("ButtonStart").GetComponent<Button>();
-            btnStop = panel.Find("ButtonStop").GetComponent<Button>();
-            btnLoad = panel.Find("Load").GetComponent<Button>();
 
             btnStart.onClick.AddListener(StartLocalization);
             btnStop.onClick.AddListener(StopLocalization);

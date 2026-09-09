@@ -12,21 +12,13 @@ namespace ARMuseum
         public GameObject[] imagetarget;
         public GameObject WireFramePanel;
 
-        private GameObject ypWarning;
-        private Animator animator;
-        private GameObject GamePanel;
+        [SerializeField] private GameObject ypWarning;
+        [SerializeField] private Animator animator;
+        [SerializeField] private GameObject gamePanel;
+        [SerializeField] private GameObject[] introImages; // IntroImage1 / IntroImage2
+        [SerializeField] private GameObject[] partPanels;  // Part1 .. PartN
 
         private int index = -1;
-
-        private void Start()
-        {
-            if (SceneManager.GetActiveScene().name != SceneNames.MeiYuDaGuan)
-                return;
-
-            ypWarning = GameObject.Find("/UI/Canvas/YPWarning");
-            animator = GameObject.Find("/UI/Canvas/GamePanel/Selections").GetComponent<Animator>();
-            GamePanel = GameObject.Find("/UI/Canvas/GamePanel");
-        }
 
         private void Update()
         {
@@ -35,17 +27,17 @@ namespace ARMuseum
 
             for (int i = 1; i <= imagetarget.Length; i++)
             {
-                string path = "UI/Canvas/WireFramePanel/WireFrame/IntroImage" + i;
                 if (i < 3)
                 {
+                    var introImage = introImages[i - 1];
                     if (imagetarget[i - 1].activeSelf)
                     {
                         WireFramePanel.SetActive(true);
-                        GameObject.Find(path).SetActive(true);
+                        introImage.SetActive(true);
                     }
-                    else if (!imagetarget[i - 1].activeSelf && GameObject.Find(path).activeSelf)
+                    else if (!imagetarget[i - 1].activeSelf && introImage.activeSelf)
                     {
-                        GameObject.Find(path).SetActive(false);
+                        introImage.SetActive(false);
                         WireFramePanel.SetActive(false);
                     }
                 }
@@ -62,18 +54,16 @@ namespace ARMuseum
 
         public void GameChoice()
         {
-            string choice = "/UI/Canvas/GamePanel/Background/Part" + index;
-            GamePanel.SetActive(true);
-            GameObject.Find(choice).SetActive(true);
+            gamePanel.SetActive(true);
+            partPanels[index - 1].SetActive(true);
             animator.SetBool("isPlay", true);
             animator.SetFloat("Speed", 1.0f);
         }
 
         public void GameOver()
         {
-            string choice = "/UI/Canvas/GamePanel/Background/Part" + index;
-            GameObject.Find(choice).SetActive(false);
-            GamePanel.SetActive(false);
+            partPanels[index - 1].SetActive(false);
+            gamePanel.SetActive(false);
             animator.SetFloat("Speed", -1.0f);
             animator.SetBool("isPlay", false);
             index = 1;
