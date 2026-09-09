@@ -123,23 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &192259546 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3184453647876061067, guid: ed698693abd2a5a4aae8835472fcf55a, type: 3}
-  m_PrefabInstance: {fileID: 2529301497798904939}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &192259547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192259546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f071adf4f2771bb4b83e60d091d15184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &221100687
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238617444}
   - component: {fileID: 238617443}
-  - component: {fileID: 238617442}
+  - component: {fileID: 238617445}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -237,18 +220,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &238617442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238617441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b07f86621589124296b584e25831f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &238617443
 AudioSource:
   m_ObjectHideFlags: 0
@@ -360,6 +331,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &238617445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238617441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handleAudioToggle: 0
+  AudioOn: {fileID: 0}
+  AudioOff: {fileID: 0}
 --- !u!1 &262217883
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handleAudioToggle: 1
   AudioOn: {fileID: 0}
   AudioOff: {fileID: 0}
 --- !u!114 &262217889
@@ -752,8 +739,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 238617442}
-        m_TargetAssemblyTypeName: ARMuseum.AudioManager, ARMuseum.Runtime
+      - m_Target: {fileID: 238617445}
+        m_TargetAssemblyTypeName: ARMuseum.AudioService, ARMuseum.Runtime
         m_MethodName: AudioPlay
         m_Mode: 2
         m_Arguments:
