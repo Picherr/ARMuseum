@@ -66,32 +66,32 @@ public class GameController : MonoBehaviour
 
     public void changeToBeginning()
     {
-        SceneManager.LoadScene(SceneNames.Beginning);
+        SceneLoader.Load(SceneNames.Beginning);
     }
 
     public void changeToNYWD()
     {
-        SceneManager.LoadScene(SceneNames.NanYueWenDi);
+        SceneLoader.Load(SceneNames.NanYueWenDi);
     }
 
     public void changeToMYDG()
     {
-        SceneManager.LoadScene(SceneNames.MeiYuDaGuan);
+        SceneLoader.Load(SceneNames.MeiYuDaGuan);
     }
 
     public void changeToHLYF()
     {
-        SceneManager.LoadScene(SceneNames.HaiLuYangFan);
+        SceneLoader.Load(SceneNames.HaiLuYangFan);
     }
 
     public void changeToSHQJ()
     {
-        SceneManager.LoadScene(SceneNames.ShengHuoQiJu);
+        SceneLoader.Load(SceneNames.ShengHuoQiJu);
     }
 
     public void changeToNavigation()
     {
-        SceneManager.LoadScene(SceneNames.Navigation);
+        SceneLoader.Load(SceneNames.Navigation);
     }
 
     private void NYWDUpdate()
