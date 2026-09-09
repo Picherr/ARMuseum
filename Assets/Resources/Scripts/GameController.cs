@@ -161,7 +161,7 @@ public class GameController : MonoBehaviour
         Sprite sprite1;
         Sprite sprite2;
 
-        if (Variables.isAudioOn) // 当前声音功能开启
+        if (AppState.IsAudioOn) // 当前声音功能开启
         {
             Path1 = "UI/Button/BClick/静音";
             Path2 = "UI/Button/AClick/静音";
@@ -180,7 +180,7 @@ public class GameController : MonoBehaviour
         spriteState.pressedSprite = sprite2;
         AudioBtn.spriteState = spriteState;
 
-        Variables.isAudioOn = !Variables.isAudioOn;
+        AppState.IsAudioOn = !AppState.IsAudioOn;
         StartCoroutine(DelayThenAudioTurnOff());
     }
 

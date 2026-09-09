@@ -17,7 +17,7 @@ public class NavInfoController : MonoBehaviour
             if (name == Target)
             {
                 string Path;
-                if(Variables.isChinese)
+                if(AppState.IsChinese)
                 {
                     Path = "UI/NavigationInfo/cn/" + Target + "_cn";
                 }

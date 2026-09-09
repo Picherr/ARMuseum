@@ -30,7 +30,7 @@ public class LanguageSwitch : MonoBehaviour
     void Start()
     {
         // 初始化
-        if (Variables.isChinese) // 此时是中文
+        if (AppState.IsChinese) // 此时是中文
             setAll("cn");
         else // 此时是英文
             setAll("en");
@@ -38,8 +38,8 @@ public class LanguageSwitch : MonoBehaviour
 
     public void Change()
     {
-        Variables.isChinese = !Variables.isChinese;
-        if (!Variables.isChinese) // 换成英文
+        AppState.IsChinese = !AppState.IsChinese;
+        if (!AppState.IsChinese) // 换成英文
         {
             setAll("en");
         }
