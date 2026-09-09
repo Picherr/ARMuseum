@@ -14,7 +14,7 @@ public class MenuUIController : MonoBehaviour
 
     public void OpenSettingMenu()
     {
-        if(!isPanelActive) // Î´µã»÷ÁĞ±í²Ëµ¥
+        if(!isPanelActive) // æœªç‚¹å‡»åˆ—è¡¨èœå•
         {
             Game.SetActive(false);
             Details.SetActive(false);

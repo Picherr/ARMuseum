@@ -172,16 +172,16 @@ public class GameController : MonoBehaviour
         Sprite sprite1;
         Sprite sprite2;
 
-        if (Variables.isAudioOn) // µ±Ç°ÉùÒô¹¦ÄÜ¿ªÆô
+        if (Variables.isAudioOn) // å½“å‰å£°éŸ³åŠŸèƒ½å¼€å¯
         {
-            Path1 = "UI/Button/BClick/¾²Òô";
-            Path2 = "UI/Button/AClick/¾²Òô";
+            Path1 = "UI/Button/BClick/é™éŸ³";
+            Path2 = "UI/Button/AClick/é™éŸ³";
             AudioOff.SetActive(true);
         }
         else
         {
-            Path1 = "UI/Button/BClick/ÓïÒô";
-            Path2 = "UI/Button/AClick/ÓïÒô";
+            Path1 = "UI/Button/BClick/è¯­éŸ³";
+            Path2 = "UI/Button/AClick/è¯­éŸ³";
             AudioOn.SetActive(true);
         }
         sprite1 = Resources.Load<Sprite>(Path1) as Sprite;

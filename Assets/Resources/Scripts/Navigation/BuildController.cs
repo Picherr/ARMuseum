@@ -31,27 +31,27 @@ public class BuildController : MonoBehaviour
         btnSave.onClick.AddListener(Save);
         btnSave.interactable = false;
         wrController.TrackingStatusChanged += OnTrackingStatusChanged;
-        Debug.Log("×¼±¸¾ÍĞ÷¡£");
+        Debug.Log("å‡†å¤‡å°±ç»ªã€‚");
     }
 
     /// <summary>
-    /// ±£´æµØÍ¼
+    /// ä¿å­˜åœ°å›¾
     /// </summary>
     private void Save()
     {
-        Debug.Log("½øÈësaveº¯Êı¡£");
+        Debug.Log("è¿›å…¥saveå‡½æ•°ã€‚");
         mapWorker.BuilderMapController.MapHost += SaveMapHostBack;
         try
         {
-            Debug.Log("¿ªÊ¼±£´æ¡£");
+            Debug.Log("å¼€å§‹ä¿å­˜ã€‚");
             mapWorker.BuilderMapController.Host(inputfield.text, null);
-            Debug.Log("Host¿ªÊ¼¹¤×÷¡£");
-            UIText.text = "¿ªÊ¼±£´æµØÍ¼¡£";
+            Debug.Log("Hostå¼€å§‹å·¥ä½œã€‚");
+            UIText.text = "å¼€å§‹ä¿å­˜åœ°å›¾ã€‚";
         }
         catch (Exception ex)
         {
-            Debug.Log("±£´æ³ö´í¡£");
-            UIText.text = "±£´æ³ö´í¡£" + ex.Message;
+            Debug.Log("ä¿å­˜å‡ºé”™ã€‚");
+            UIText.text = "ä¿å­˜å‡ºé”™ã€‚" + ex.Message;
         }
     }
 
@@ -61,11 +61,11 @@ public class BuildController : MonoBehaviour
         {
             PlayerPrefs.SetString("MapID", mapInfo.ID);
             PlayerPrefs.SetString("MapName", mapInfo.Name);
-            UIText.text = "µØÍ¼±£´æ³É¹¦¡£\r\nMapID:" + mapInfo.ID;
+            UIText.text = "åœ°å›¾ä¿å­˜æˆåŠŸã€‚\r\nMapID:" + mapInfo.ID;
         }
         else
         {
-            UIText.text = "µØÍ¼±£´æ³ö´í¡£" + error;
+            UIText.text = "åœ°å›¾ä¿å­˜å‡ºé”™ã€‚" + error;
         }
     }
 
@@ -73,12 +73,12 @@ public class BuildController : MonoBehaviour
     {
         if (status == MotionTrackingStatus.Tracking)
         {
-            UIText.text = "½øÈë¸ú×Ù×´Ì¬¡£";
+            UIText.text = "è¿›å…¥è·Ÿè¸ªçŠ¶æ€ã€‚";
             btnSave.interactable = true;
         }
         else
         {
-            UIText.text = "ÍË³ö¸ú×Ù×´Ì¬¡£" + status.ToString();
+            UIText.text = "é€€å‡ºè·Ÿè¸ªçŠ¶æ€ã€‚" + status.ToString();
             btnSave.interactable = false;
         }
     }

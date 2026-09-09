@@ -106,7 +106,7 @@ public class NavigationController : MonoBehaviour
 
     public void CloseFloor1()
     {
-        if (isHide1) // ´ËÊ±UI´¦ÓÚÒş²Ø×´Ì¬
+        if (isHide1) // æ­¤æ—¶UIå¤„äºéšè—çŠ¶æ€
         {
             f1Anim.SetBool("isHide", true);
         }
@@ -119,7 +119,7 @@ public class NavigationController : MonoBehaviour
 
     public void CloseFloor2()
     {
-        if (isHide2) // ´ËÊ±UI´¦ÓÚÒş²Ø×´Ì¬
+        if (isHide2) // æ­¤æ—¶UIå¤„äºéšè—çŠ¶æ€
         {
             f2Anim.SetBool("isHide", true);
         }
@@ -133,7 +133,7 @@ public class NavigationController : MonoBehaviour
     public void ClosePanel()
     {
         bool isPanelValid = Panel.activeSelf;
-        if (isPanelValid) // ´ËÊ±NavigPanel´¦ÓÚactive
+        if (isPanelValid) // æ­¤æ—¶NavigPanelå¤„äºactive
         {
             Panel.SetActive(false);
         }

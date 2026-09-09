@@ -10,7 +10,7 @@ public class MapSizeController : MonoBehaviour
     IEnumerator ie;
     FingerIE finger_num = FingerIE.zero;
 
-    // 存储当前拖拽图片的RectTransform组件
+    // 瀛樺偍褰撳墠鎷栨嫿鍥剧墖鐨凴ectTransform缁勪欢
     private RectTransform m_rt;
 
     void Awake()

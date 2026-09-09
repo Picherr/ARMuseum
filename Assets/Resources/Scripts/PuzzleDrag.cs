@@ -14,14 +14,14 @@ public class PuzzleDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     private YPController ypController;
 
-    private Vector3 touchOffset; // ÍÏ×§µÄÆ«ÒÆÁ¿
-    private Transform panel; // ³¡¾°ÖĞµÄPanel£¬ÉèÖÃÍÏ×§¹ı³ÌÖĞµÄ¸¸ÎïÌå
-    private ScrollRect scrollRect; // ScrollViewµÄScrollRect×é¼ş
-    private bool isDragItem; // ÍÏ×§µÄÊÇ·ñÊÇ×ÓÎïÌå
+    private Vector3 touchOffset; // æ‹–æ‹½çš„åç§»é‡
+    private Transform panel; // åœºæ™¯ä¸­çš„Panelï¼Œè®¾ç½®æ‹–æ‹½è¿‡ç¨‹ä¸­çš„çˆ¶ç‰©ä½“
+    private ScrollRect scrollRect; // ScrollViewçš„ScrollRectç»„ä»¶
+    private bool isDragItem; // æ‹–æ‹½çš„æ˜¯å¦æ˜¯å­ç‰©ä½“
 
     void Awake()
     {
-        Input.multiTouchEnabled = false; // ÏŞÖÆ¶àÖ¸ÍÏ×§
+        Input.multiTouchEnabled = false; // é™åˆ¶å¤šæŒ‡æ‹–æ‹½
         /*panel = GameObject.Find("/UI/Canvas/GamePanel").GetComponent<Transform>();
         scrollRect = GameObject.Find("/UI/Canvas/GamePanel/Selections/ScrollView").GetComponent<ScrollRect>();
         isDragItem = false;*/
@@ -53,13 +53,13 @@ public class PuzzleDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         //Debug.Log(transform.name);
         if(obj.transform.tag == "board" && ypController.Check(transform.name, obj.transform.name))
         {
-            //Debug.Log("¿ªÊ¼Æ¥Åä");
+            //Debug.Log("å¼€å§‹åŒ¹é…");
             transform.AddComponent<Image>();
             Sprite sprite = transform.GetComponent<Image>().sprite;
             obj.AddComponent<Image>();
             obj.GetComponent<Image>().sprite = sprite;
             obj.GetComponent<Image>().color = new Color(255.0f, 255.0f, 255.0f, 255.0f);
-            //Debug.Log("Íê³ÉÆ¥Åä");
+            //Debug.Log("å®ŒæˆåŒ¹é…");
             transform.SetParent(ParentInitial.transform);
             int index = int.Parse(transform.name.Remove(0, 5));
             transform.SetSiblingIndex(index);

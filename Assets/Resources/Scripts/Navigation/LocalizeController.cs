@@ -47,7 +47,7 @@ public class LocalizeController : MonoBehaviour
         {
             inputID.text = PlayerPrefs.GetString("MapID", "");
             inputName.text = PlayerPrefs.GetString("MapName", "");
-            Debug.Log("inputFieldÒÑ»ñÈ¡string");
+            Debug.Log("inputFieldå·²è·å–string");
         }
 
         StartLocalization();
@@ -61,7 +61,7 @@ public class LocalizeController : MonoBehaviour
             map.MapManagerSource.Name = inputName.text;
         }
 
-        UIText.text = "¿ªÊ¼±¾µØ»¯µØÍ¼¡£";
+        UIText.text = "å¼€å§‹æœ¬åœ°åŒ–åœ°å›¾ã€‚";
         mapWorker.Localizer.startLocalization();
     }
 
@@ -74,21 +74,21 @@ public class LocalizeController : MonoBehaviour
     {
         if(isSuccess)
         {
-            UIText.text = "µØÍ¼£º" + mapInfo.Name + "¼ÓÔØ³É¹¦¡£";
+            UIText.text = "åœ°å›¾ï¼š" + mapInfo.Name + "åŠ è½½æˆåŠŸã€‚";
         }
         else
         {
-            UIText.text = "µØÍ¼¼ÓÔØÊ§°Ü¡£" + error;
+            UIText.text = "åœ°å›¾åŠ è½½å¤±è´¥ã€‚" + error;
         }
     }
 
     private void LocalizeMap()
     {
-        UIText.text = "µØÍ¼¶¨Î»³É¹¦¡£" + DateTime.Now.ToShortTimeString();
+        UIText.text = "åœ°å›¾å®šä½æˆåŠŸã€‚" + DateTime.Now.ToShortTimeString();
     }
 
     private void StopLocalizeMap()
     {
-        UIText.text = "µØÍ¼Í£Ö¹¶¨Î»¡£" + DateTime.Now.ToShortTimeString();
+        UIText.text = "åœ°å›¾åœæ­¢å®šä½ã€‚" + DateTime.Now.ToShortTimeString();
     }
 }

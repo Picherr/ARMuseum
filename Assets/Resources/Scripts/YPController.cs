@@ -42,12 +42,12 @@ public class YPController : MonoBehaviour
     {
         if (table[dragName].ToString() == dripName)
         {
-            Debug.Log("Æ¥Åä³É¹¦");
+            Debug.Log("åŒ¹é…æˆåŠŸ");
             return true;
         }
         else
         {
-            Debug.Log("Æ¥ÅäÊ§°Ü");
+            Debug.Log("åŒ¹é…å¤±è´¥");
             return false;
         }
     }

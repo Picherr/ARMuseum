@@ -29,21 +29,21 @@ public class LanguageSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ³õÊ¼»¯
-        if (Variables.isChinese) // ´ËÊ±ÊÇÖĞÎÄ
+        // åˆå§‹åŒ–
+        if (Variables.isChinese) // æ­¤æ—¶æ˜¯ä¸­æ–‡
             setAll("cn");
-        else // ´ËÊ±ÊÇÓ¢ÎÄ
+        else // æ­¤æ—¶æ˜¯è‹±æ–‡
             setAll("en");
     }
 
     public void Change()
     {
         Variables.isChinese = !Variables.isChinese;
-        if (!Variables.isChinese) // »»³ÉÓ¢ÎÄ
+        if (!Variables.isChinese) // æ¢æˆè‹±æ–‡
         {
             setAll("en");
         }
-        else // »»³ÉÓ¢ÎÄ
+        else // æ¢æˆè‹±æ–‡
         {
             setAll("cn");
         }

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class ScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
-    // 获取组件
+    // 鑾峰彇缁勪欢
     public ScrollRect Rect;
     public GameObject Content;
     private float[] posArray = new float[] { 0f, 0.5f, 1.0f };
     private float targetPos;
-    // 判断是否正在拖拽
+    // 鍒ゆ柇鏄惁姝ｅ湪鎷栨嫿
     private bool isDrag = false;
     int index = 0;
 

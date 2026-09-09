@@ -12,19 +12,19 @@ public class SlidingDirection : MonoBehaviour
     }
 
     [SerializeField]
-    private bool executeMultipleTimes = false; // ÊÇ·ñÖ§³Ö¶à´ÎÖ´ĞĞ
+    private bool executeMultipleTimes = false; // æ˜¯å¦æ”¯æŒå¤šæ¬¡æ‰§è¡Œ
     [SerializeField]
-    private float offsetTime = 0.1f; // ÅĞ¶ÏµÄÊ±¼ä¼ä¸ô
+    private float offsetTime = 0.1f; // åˆ¤æ–­çš„æ—¶é—´é—´éš”
     [SerializeField]
-    private float slidingDistance = 80f; // »¬¶¯µÄ×îĞ¡¾àÀë
+    private float slidingDistance = 80f; // æ»‘åŠ¨çš„æœ€å°è·ç¦»
 
-    private Vector2 touchFirst = Vector2.zero; // ÊÖÖ¸¿ªÊ¼°´ÏÂµÄÎ»ÖÃ
+    private Vector2 touchFirst = Vector2.zero; // æ‰‹æŒ‡å¼€å§‹æŒ‰ä¸‹çš„ä½ç½®
 
-    private Vector2 touchSecond = Vector2.zero; // ÊÖÖ¸ÍÏ¶¯µÄÎ»ÖÃ
+    private Vector2 touchSecond = Vector2.zero; // æ‰‹æŒ‡æ‹–åŠ¨çš„ä½ç½®
 
-    private SlideVector currentVector = SlideVector.None; // µ±Ç°»¬¶¯·½Ïò
+    private SlideVector currentVector = SlideVector.None; // å½“å‰æ»‘åŠ¨æ–¹å‘
 
-    private float timer; // Ê±¼ä¼ÆÊıÆ÷
+    private float timer; // æ—¶é—´è®¡æ•°å™¨
 
     void OnGUI()
     {
@@ -98,7 +98,7 @@ public class SlidingDirection : MonoBehaviour
 
         if(Event.current.type==EventType.MouseUp)
         {
-            currentVector = SlideVector.None; // ³õÊ¼»¯·½Ïò
+            currentVector = SlideVector.None; // åˆå§‹åŒ–æ–¹å‘
         }
     }
 

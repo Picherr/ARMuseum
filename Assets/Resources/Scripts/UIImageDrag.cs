@@ -3,40 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// ÊµÏÖUIÍ¼Æ¬ÍÏ×§¹¦ÄÜ
+// å®ç°UIå›¾ç‰‡æ‹–æ‹½åŠŸèƒ½
 public class UIImageDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [Header("ÊÇ·ñ¾«×¼ÍÏ×§")]
+    [Header("æ˜¯å¦ç²¾å‡†æ‹–æ‹½")]
     public bool m_isPrecision;
 
-    [Header("ÊÇ·ñ¿ªÆôËõ·Å")]
+    [Header("æ˜¯å¦å¼€å¯ç¼©æ”¾")]
     public bool isCanZoom;
 
-    [Tooltip("×î´ó·Å´ó±¶Êı")]
+    [Tooltip("æœ€å¤§æ”¾å¤§å€æ•°")]
     public float m_maxScale = 4.0f;
 
-    [Tooltip("×îĞ¡ËõĞ¡±¶Êı")]
+    [Tooltip("æœ€å°ç¼©å°å€æ•°")]
     public float m_minScale = 0.4f;
 
-    // ´æ´¢Í¼Æ¬ÖĞĞÄµãÓëÊó±êµã»÷µãµÄÆ«ÒÆÁ¿
+    // å­˜å‚¨å›¾ç‰‡ä¸­å¿ƒç‚¹ä¸é¼ æ ‡ç‚¹å‡»ç‚¹çš„åç§»é‡
     private Vector3 m_offset;
 
-    // ´æ´¢µ±Ç°ÍÏ×§Í¼Æ¬µÄRectTransform×é¼ş
+    // å­˜å‚¨å½“å‰æ‹–æ‹½å›¾ç‰‡çš„RectTransformç»„ä»¶
     private RectTransform m_rt;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Èç¹û¾«×¼ÍÏ×§Ôò½øĞĞ¼ÆËãÆ«ÒÆÁ¿²Ù×÷
+        // å¦‚æœç²¾å‡†æ‹–æ‹½åˆ™è¿›è¡Œè®¡ç®—åç§»é‡æ“ä½œ
         if(m_isPrecision)
         {
-            // ´æ´¢µã»÷Ê±µÄÊó±ê×ø±ê
+            // å­˜å‚¨ç‚¹å‡»æ—¶çš„é¼ æ ‡åæ ‡
             Vector3 tWorldPos;
-            // UIÆÁÄ»×ø±ê×ª»»ÎªÊÀ½ç×ø±ê
+            // UIå±å¹•åæ ‡è½¬æ¢ä¸ºä¸–ç•Œåæ ‡
             RectTransformUtility.ScreenPointToWorldPointInRectangle(m_rt, eventData.position, eventData.pressEventCamera, out tWorldPos);
-            // ¼ÆËãÆ«ÒÆÁ¿
+            // è®¡ç®—åç§»é‡
             m_offset = transform.position - tWorldPos;
         }
-        // ·ñÔò£¬Æ«ÒÆÁ¿Ä¬ÈÏÎª0
+        // å¦åˆ™ï¼Œåç§»é‡é»˜è®¤ä¸º0
         else
         {
             m_offset = Vector3.zero;
@@ -62,7 +62,7 @@ public class UIImageDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     // Start is called before the first frame update
     void Start()
     {
-        // ³õÊ¼»¯
+        // åˆå§‹åŒ–
         m_rt = gameObject.GetComponent<RectTransform>();
     }
 
@@ -107,12 +107,12 @@ public class UIImageDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     private void SetDraggedPosition(PointerEventData eventData)
     {
-        // ´æ´¢µ±Ç°Êó±êËùÔÚÎ»ÖÃ
+        // å­˜å‚¨å½“å‰é¼ æ ‡æ‰€åœ¨ä½ç½®
         Vector3 globalMousePos;
-        // UIÆÁÄ»×ø±ê×ª»»ÎªÊÀ½ç×ø±ê
+        // UIå±å¹•åæ ‡è½¬æ¢ä¸ºä¸–ç•Œåæ ‡
         if(RectTransformUtility.ScreenPointToWorldPointInRectangle(m_rt,eventData.position,eventData.pressEventCamera,out globalMousePos))
         {
-            // ÉèÖÃÎ»ÖÃ¼°Æ«ÒÆÁ¿
+            // è®¾ç½®ä½ç½®åŠåç§»é‡
             m_rt.position = globalMousePos + m_offset;
         }
     }
