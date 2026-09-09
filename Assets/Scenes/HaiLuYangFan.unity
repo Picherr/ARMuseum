@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -392,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -672,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
@@ -772,7 +772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -1891,7 +1891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309128205527, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuUIController, Assembly-CSharp
+      value: ARMuseum.MenuUIController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309128205527, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -2107,7 +2107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158121310482435453, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LanguageSwitch, Assembly-CSharp
+      value: ARMuseum.LanguageSwitch, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121310482435453, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

@@ -5872,7 +5872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5361048233868344310, guid: f46a3fbf003d2c14a9a3d0f775f59d32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BuildController, Assembly-CSharp
+      value: ARMuseum.BuildController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 5361048233868344310, guid: f46a3fbf003d2c14a9a3d0f775f59d32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
