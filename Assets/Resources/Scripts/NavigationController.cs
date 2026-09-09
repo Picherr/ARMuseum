@@ -101,7 +101,7 @@ public class NavigationController : MonoBehaviour
     {
         CloseFloor1();
         CloseFloor2();
-        Invoke("ClosePanel", 0.2f);
+        StartCoroutine(DelayThenClosePanel());
     }
 
     public void CloseFloor1()
@@ -141,5 +141,11 @@ public class NavigationController : MonoBehaviour
         {
             return;
         }
+    }
+
+    private IEnumerator DelayThenClosePanel()
+    {
+        yield return new WaitForSeconds(0.2f);
+        ClosePanel();
     }
 }

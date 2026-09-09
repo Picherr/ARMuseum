@@ -56,11 +56,12 @@ public class GameController : MonoBehaviour
     public void Tip()
     {
         TipImg.SetActive(true);
-        Invoke("changeToMM", 5.0f);
+        StartCoroutine(DelayThenChangeToNYWD());
     }
 
-    private void changeToMM()
+    private IEnumerator DelayThenChangeToNYWD()
     {
+        yield return new WaitForSeconds(5.0f);
         changeToNYWD();
     }
 
@@ -180,7 +181,7 @@ public class GameController : MonoBehaviour
         AudioBtn.spriteState = spriteState;
 
         Variables.isAudioOn = !Variables.isAudioOn;
-        Invoke("AudioTurnOff", 1.0f);
+        StartCoroutine(DelayThenAudioTurnOff());
     }
 
     private void AudioTurnOff()
@@ -189,15 +190,27 @@ public class GameController : MonoBehaviour
         AudioOff.SetActive(false);
     }
 
+    private IEnumerator DelayThenAudioTurnOff()
+    {
+        yield return new WaitForSeconds(1.0f);
+        AudioTurnOff();
+    }
+
     public void TouchTipOpen()
     {
         TouchTip.SetActive(true);
-        Invoke("TouchTipOff", 2.0f);
+        StartCoroutine(DelayThenTouchTipOff());
     }
 
     private void TouchTipOff()
     {
         TouchTip.SetActive(false);
+    }
+
+    private IEnumerator DelayThenTouchTipOff()
+    {
+        yield return new WaitForSeconds(2.0f);
+        TouchTipOff();
     }
 
     public void GameChoice()
