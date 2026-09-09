@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.easyar.sense": "file:D:/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package",
+    "com.easyar.sense": "file:D:/0Source/EasyARPlugin/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package",
     "com.unity.collab-proxy": "1.17.2",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.15",
