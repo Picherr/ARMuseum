@@ -89,16 +89,6 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(SceneNames.ShengHuoQiJu);
     }
 
-    public void changeToGTYY()
-    {
-        SceneManager.LoadScene("GongTingYanLe");
-    }
-
-    public void changeToBQCM()
-    {
-        SceneManager.LoadScene("BingQiCheMa");
-    }
-
     public void changeToNavigation()
     {
         SceneManager.LoadScene(SceneNames.Navigation);
