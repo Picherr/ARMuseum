@@ -1492,6 +1492,7 @@ MonoBehaviour:
   imagetarget:
   - {fileID: 422161444}
   WireFramePanel: {fileID: 232545616}
+  introImage1: {fileID: 1261203881}
 --- !u!114 &1259564495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,8 +1519,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handleAudioToggle: 1
   AudioOn: {fileID: 1048121851}
   AudioOff: {fileID: 500520283}
+  audioButton: {fileID: 1564448872}
 --- !u!114 &1259564497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1838,6 +1841,17 @@ Transform:
   m_Father: {fileID: 1105954925}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564448872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2755671164091507254, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+  m_PrefabInstance: {fileID: 3158121310436746977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158121310436746979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1586207813 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3158121310482435453, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}

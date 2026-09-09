@@ -7,10 +7,10 @@ namespace ARMuseum
 {
     public class PuzzleDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        private GameObject ParentWhenDrag;
+        [SerializeField] private GameObject ParentWhenDrag;
         private GameObject ParentInitial;
 
-        private YPController ypController;
+        [SerializeField] private YPController ypController;
 
         private Vector3 touchOffset; // 拖拽的偏移量
         private Transform panel; // 场景中的Panel，设置拖拽过程中的父物体
@@ -28,8 +28,6 @@ namespace ARMuseum
         // Start is called before the first frame update
         void Start()
         {
-            ParentWhenDrag = GameObject.Find("UI/Canvas/GamePanel");
-            ypController = GameObject.Find("UI").GetComponent<YPController>(); 
         }
 
         public void OnBeginDrag(PointerEventData eventData)

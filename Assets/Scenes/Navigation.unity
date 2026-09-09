@@ -6400,6 +6400,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c654e084f309d24d8a8087f852cba82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 5361048231936011797}
+  UIText: {fileID: 5361048233560067028}
+  inputID: {fileID: 1929119679}
+  inputName: {fileID: 1659812375}
+  btnStart: {fileID: 1538248352}
+  btnStop: {fileID: 5361048232592300235}
+  btnLoad: {fileID: 1624088966}
 --- !u!4 &1163035295
 Transform:
   m_ObjectHideFlags: 0
@@ -8461,8 +8468,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handleAudioToggle: 1
   AudioOn: {fileID: 0}
   AudioOff: {fileID: 0}
+  audioButton: {fileID: 0}
 --- !u!114 &5361048233363482996
 MonoBehaviour:
   m_ObjectHideFlags: 0

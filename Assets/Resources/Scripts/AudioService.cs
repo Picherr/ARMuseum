@@ -18,8 +18,9 @@ namespace ARMuseum
         public GameObject AudioOn;
         public GameObject AudioOff;
 
+        [SerializeField] private Button audioButton;
+
         private AudioSource _audioSource;
-        private Button _audioButton;
 
         private void Start()
         {
@@ -30,8 +31,8 @@ namespace ARMuseum
             if (SceneManager.GetActiveScene().name == SceneNames.Navigation)
                 return;
 
-            _audioButton = GameObject.Find("/UI/MenuUI/Canvas/ButtonGroup/Audio").GetComponent<Button>();
-            _audioButton.onClick.AddListener(Audio);
+            if (audioButton != null)
+                audioButton.onClick.AddListener(Audio);
         }
 
         // SFX 播放（原 AudioManager.AudioPlay）
@@ -63,11 +64,11 @@ namespace ARMuseum
                 AudioOn.SetActive(true);
             }
             sprite1 = Resources.Load<Sprite>(Path1) as Sprite;
-            _audioButton.image.sprite = sprite1;
+            audioButton.image.sprite = sprite1;
             sprite2 = Resources.Load<Sprite>(Path2) as Sprite;
             SpriteState spriteState = new SpriteState();
             spriteState.pressedSprite = sprite2;
-            _audioButton.spriteState = spriteState;
+            audioButton.spriteState = spriteState;
 
             AppState.IsAudioOn = !AppState.IsAudioOn;
             StartCoroutine(DelayThenAudioTurnOff());

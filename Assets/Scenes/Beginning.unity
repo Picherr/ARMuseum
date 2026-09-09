@@ -346,6 +346,7 @@ MonoBehaviour:
   handleAudioToggle: 0
   AudioOn: {fileID: 0}
   AudioOff: {fileID: 0}
+  audioButton: {fileID: 0}
 --- !u!1 &262217883
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +463,7 @@ MonoBehaviour:
   handleAudioToggle: 1
   AudioOn: {fileID: 0}
   AudioOff: {fileID: 0}
+  audioButton: {fileID: 0}
 --- !u!114 &262217889
 MonoBehaviour:
   m_ObjectHideFlags: 0

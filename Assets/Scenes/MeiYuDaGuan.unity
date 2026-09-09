@@ -322,6 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &23940603
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &138534400
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1995,6 +1999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &235564921
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2320,6 +2326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &306125200
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,6 +2889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!114 &398245806 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1676139493712079449, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
@@ -3103,6 +3113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &495504610
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3217,6 +3229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &558084015
 GameObject:
   m_ObjectHideFlags: 0
@@ -3307,6 +3321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &558084020
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3942,6 +3958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &623864588
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4449,6 +4467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &670707854
 GameObject:
   m_ObjectHideFlags: 0
@@ -4641,6 +4661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &736772162
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4743,6 +4765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &751565087
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5986,6 +6010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1194524976
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6167,6 +6193,17 @@ MonoBehaviour:
   - {fileID: 129373270}
   - {fileID: 1325288794}
   WireFramePanel: {fileID: 951216605}
+  ypWarning: {fileID: 1058464155}
+  animator: {fileID: 1750582325}
+  gamePanel: {fileID: 794640477}
+  introImages:
+  - {fileID: 445719870}
+  - {fileID: 1184359135}
+  partPanels:
+  - {fileID: 129567665}
+  - {fileID: 178273795}
+  - {fileID: 1902899609}
+  - {fileID: 458695919}
 --- !u!114 &1286717902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6193,8 +6230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handleAudioToggle: 1
   AudioOn: {fileID: 52080381}
   AudioOff: {fileID: 306125200}
+  audioButton: {fileID: 1564448872}
 --- !u!114 &1286717904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6422,6 +6461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1374621132
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7000,6 +7041,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d9916631bae8be45b1772c8b580ed19, type: 3}
+--- !u!114 &1564448872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2755671164091507254, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+  m_PrefabInstance: {fileID: 171668317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823416013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1576050194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7552,6 +7604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1687854334
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8782,6 +8836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1904189262
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9309,6 +9365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &2013148798
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9411,6 +9469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &2030539627
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9623,6 +9683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &2066866362
 CanvasGroup:
   m_ObjectHideFlags: 0
