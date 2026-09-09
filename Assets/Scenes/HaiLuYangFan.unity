@@ -676,7 +676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.GameController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -1759,7 +1759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.GameController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 1514769366055383691, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_RootOrder

@@ -1,0 +1,16 @@
+{
+    "name": "ARMuseum.Runtime",
+    "rootNamespace": "ARMuseum",
+    "references": [
+        "EasyAR.Sense"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

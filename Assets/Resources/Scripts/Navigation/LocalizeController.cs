@@ -5,90 +5,94 @@ using easyar;
 using System;
 using UnityEngine.UI;
 
-public class LocalizeController : MonoBehaviour
+namespace ARMuseum
 {
-    private ARSession session;
-    private SparseSpatialMapWorkerFrameFilter mapWorker;
-    private SparseSpatialMapController map;
-
-    private Text UIText;
-    private InputField inputID;
-    private InputField inputName;
-
-    private Button btnStart;
-    private Button btnStop;
-    private Button btnLoad;
-
-    // Start is called before the first frame update
-    void Start()
+    public class LocalizeController : MonoBehaviour
     {
-        session = FindObjectOfType<ARSession>();
-        mapWorker = FindObjectOfType<SparseSpatialMapWorkerFrameFilter>();
-        map = FindObjectOfType<SparseSpatialMapController>();
+        private ARSession session;
+        private SparseSpatialMapWorkerFrameFilter mapWorker;
+        private SparseSpatialMapController map;
 
-        Transform panel = GameObject.Find("/Canvas/Panel").transform;
+        private Text UIText;
+        private InputField inputID;
+        private InputField inputName;
 
-        UIText = panel.Find("Text").GetComponent<Text>();
-        inputID = panel.Find("InputFieldID").GetComponent<InputField>();
-        inputName = panel.Find("InputFieldName").GetComponent<InputField>();
-        btnStart = panel.Find("ButtonStart").GetComponent<Button>();
-        btnStop = panel.Find("ButtonStop").GetComponent<Button>();
-        btnLoad = panel.Find("Load").GetComponent<Button>();
+        private Button btnStart;
+        private Button btnStop;
+        private Button btnLoad;
 
-        btnStart.onClick.AddListener(StartLocalization);
-        btnStop.onClick.AddListener(StopLocalization);
-        //btnLoad.onClick.AddListener(LoadMap);
-
-        map.MapLoad += MapLoadBack;
-        map.MapLocalized += LocalizeMap;
-        map.MapStopLocalize += StopLocalizeMap;
-
-        if (inputID.text.Length == 0)
+        // Start is called before the first frame update
+        void Start()
         {
-            inputID.text = PlayerPrefs.GetString("MapID", "");
-            inputName.text = PlayerPrefs.GetString("MapName", "");
-            Debug.Log("inputField已获取string");
+            session = FindObjectOfType<ARSession>();
+            mapWorker = FindObjectOfType<SparseSpatialMapWorkerFrameFilter>();
+            map = FindObjectOfType<SparseSpatialMapController>();
+
+            Transform panel = GameObject.Find("/Canvas/Panel").transform;
+
+            UIText = panel.Find("Text").GetComponent<Text>();
+            inputID = panel.Find("InputFieldID").GetComponent<InputField>();
+            inputName = panel.Find("InputFieldName").GetComponent<InputField>();
+            btnStart = panel.Find("ButtonStart").GetComponent<Button>();
+            btnStop = panel.Find("ButtonStop").GetComponent<Button>();
+            btnLoad = panel.Find("Load").GetComponent<Button>();
+
+            btnStart.onClick.AddListener(StartLocalization);
+            btnStop.onClick.AddListener(StopLocalization);
+            //btnLoad.onClick.AddListener(LoadMap);
+
+            map.MapLoad += MapLoadBack;
+            map.MapLocalized += LocalizeMap;
+            map.MapStopLocalize += StopLocalizeMap;
+
+            if (inputID.text.Length == 0)
+            {
+                inputID.text = PlayerPrefs.GetString("MapID", "");
+                inputName.text = PlayerPrefs.GetString("MapName", "");
+                Debug.Log("inputField已获取string");
+            }
+
+            StartLocalization();
         }
 
-        StartLocalization();
-    }
-
-    public void StartLocalization()
-    {
-        if(inputID.text.Length>0)
+        public void StartLocalization()
         {
-            map.MapManagerSource.ID = inputID.text;
-            map.MapManagerSource.Name = inputName.text;
+            if(inputID.text.Length>0)
+            {
+                map.MapManagerSource.ID = inputID.text;
+                map.MapManagerSource.Name = inputName.text;
+            }
+
+            UIText.text = "开始本地化地图。";
+            mapWorker.Localizer.startLocalization();
         }
 
-        UIText.text = "开始本地化地图。";
-        mapWorker.Localizer.startLocalization();
-    }
-
-    public void StopLocalization()
-    {
-        mapWorker.Localizer.stopLocalization();
-    }
-
-    private void MapLoadBack(SparseSpatialMapController.SparseSpatialMapInfo mapInfo,bool isSuccess, string error)
-    {
-        if(isSuccess)
+        public void StopLocalization()
         {
-            UIText.text = "地图：" + mapInfo.Name + "加载成功。";
+            mapWorker.Localizer.stopLocalization();
         }
-        else
+
+        private void MapLoadBack(SparseSpatialMapController.SparseSpatialMapInfo mapInfo,bool isSuccess, string error)
         {
-            UIText.text = "地图加载失败。" + error;
+            if(isSuccess)
+            {
+                UIText.text = "地图：" + mapInfo.Name + "加载成功。";
+            }
+            else
+            {
+                UIText.text = "地图加载失败。" + error;
+            }
+        }
+
+        private void LocalizeMap()
+        {
+            UIText.text = "地图定位成功。" + DateTime.Now.ToShortTimeString();
+        }
+
+        private void StopLocalizeMap()
+        {
+            UIText.text = "地图停止定位。" + DateTime.Now.ToShortTimeString();
         }
     }
 
-    private void LocalizeMap()
-    {
-        UIText.text = "地图定位成功。" + DateTime.Now.ToShortTimeString();
-    }
-
-    private void StopLocalizeMap()
-    {
-        UIText.text = "地图停止定位。" + DateTime.Now.ToShortTimeString();
-    }
 }

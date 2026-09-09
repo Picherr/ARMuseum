@@ -1,32 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NavInfoController : MonoBehaviour
+namespace ARMuseum
 {
-    public Sprite[] sprites;
-    public Image img;
-
-    public void NavInfo(string Target)
+    public class NavInfoController : MonoBehaviour
     {
-        for(int i = 0; i < 6; i++)
+        public Sprite[] sprites;
+        public Image img;
+
+        public void NavInfo(string Target)
         {
-            string name = sprites[i].name.Substring(0, sprites[i].name.Length - 3);
-            if (name == Target)
+            for(int i = 0; i < 6; i++)
             {
-                string Path;
-                if(AppState.IsChinese)
+                string name = sprites[i].name.Substring(0, sprites[i].name.Length - 3);
+                if (name == Target)
                 {
-                    Path = "UI/NavigationInfo/cn/" + Target + "_cn";
+                    string Path;
+                    if(AppState.IsChinese)
+                    {
+                        Path = "UI/NavigationInfo/cn/" + Target + "_cn";
+                    }
+                    else
+                    {
+                        Path = "UI/NavigationInfo/en/" + Target + "_en";
+                    }
+                    Debug.Log(Path);
+                    Sprite sprite = Resources.Load<Sprite>(Path) as Sprite;
+                    sprites[i] = sprite;
+                    img.sprite = sprites[i];
                 }
-                else
-                {
-                    Path = "UI/NavigationInfo/en/" + Target + "_en";
-                }
-                Debug.Log(Path);
-                Sprite sprite = Resources.Load<Sprite>(Path) as Sprite;
-                sprites[i] = sprite;
-                img.sprite = sprites[i];
             }
         }
     }
+
 }

@@ -717,7 +717,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262217887}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_TargetAssemblyTypeName: ARMuseum.GameController, ARMuseum.Runtime
         m_MethodName: Tip
         m_Mode: 1
         m_Arguments:
@@ -729,7 +729,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 238617442}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: ARMuseum.AudioManager, ARMuseum.Runtime
         m_MethodName: AudioPlay
         m_Mode: 2
         m_Arguments:
