@@ -62,6 +62,26 @@ ARMuseum/
 
 `Assets/Scenes/Scan.unity` 用于构建并上传稀疏空间地图，目前没有加入构建列表。
 
+## 代码架构
+
+业务脚本统一收在 `Assets/Resources/Scripts`（`ARMuseum` 命名空间，程序集 `ARMuseum.Runtime`，引用 `EasyAR.Sense`）。重构后按职责拆分为：
+
+| 组件 | 职责 |
+| --- | --- |
+| `SceneNames` / `SceneLoader` | 场景名常量与场景跳转统一入口（静态） |
+| `AppState` | 应用级全局状态（语言、音频开关） |
+| `SceneNavigation` | 各 `changeToXXX` 场景跳转方法，供按钮 onClick 引用 |
+| `AudioService` | 音频统一服务：SFX 播放、静音开关；背景音乐由 `BGM.prefab` 的 AudioSource 直接播放 |
+| `TipController` | 启动页提示与触摸提示 |
+| `GamePanelController` | 美玉大观场景的游戏面板与拼图提示 |
+| `WireFrameController` | 南越文帝 / 海路扬帆场景的线框图切换 |
+| `NavigationController` / `NavInfoController` | 楼层导航与导航信息展示 |
+| `LanguageSwitch` | 中英文 UI 切换 |
+| `PuzzleDrag` / `YPController` | 玉佩拼图拖拽与匹配判定 |
+| `BuildController` / `LocalizeController` | 稀疏空间地图的构建与定位（开发工具） |
+
+优先使用 `[SerializeField]` 字段在 Inspector 里接线，避免运行时 `GameObject.Find` 硬编码路径；仅语言相关贴图按 `Resources.Load` 从 `cn`/`en` 目录动态加载。
+
 ## 开始使用
 
 ### 1. 准备环境
@@ -120,7 +140,7 @@ EasyAR 配置位于 `Assets/XR/Settings/EasyAR Settings.asset`，其中包含许
 ## 开发注意事项
 
 - Unity 资源和对应 `.meta` 文件必须一起提交，不能单独重建或丢弃 `.meta`。
-- 多个脚本使用 `GameObject.Find`、`Resources.Load`、场景名及对象名硬编码；重命名场景、层级对象或资源前应先搜索所有引用。
+- 多个脚本此前用 `GameObject.Find`、`Resources.Load`、场景名及对象名硬编码；重构后大多数 `GameObject.Find` 已改为 `[SerializeField]` 字段，但重命名场景、层级对象或资源前仍应先搜索所有引用。
 - 中英文资源遵循 `Assets/Resources/UI/<类型>/<cn|en>/<名称>_<cn|en>` 的路径约定，修改命名会影响 `LanguageSwitch` 和 `NavInfoController`。
 - `StreamingAssets` 中目标图片与同名 `.etd` 数据应成对维护。
 - 部分业务脚本使用 GBK 兼容编码，批量格式化或统一转码可能制造大范围无关差异；修改时应检查中文注释和字符串是否保持正确。
@@ -131,7 +151,14 @@ EasyAR 配置位于 `Assets/XR/Settings/EasyAR Settings.asset`，其中包含许
 
 ## 验证建议
 
-仓库当前没有自定义 Edit Mode 或 Play Mode 测试。提交功能改动前至少应检查：
+仓库已引入 Unity Test Framework：
+
+- Edit Mode（`Assets/Tests/EditMode`）：`SceneNames` 常量与场景资源对应、`AppState` 默认值与读写。
+- Play Mode（`Assets/Tests/PlayMode`）：`SceneLoader` 逐一加载 Build Settings 中 6 个应用流程场景的冒烟测试。
+
+运行方式：Test Runner 窗口，或批处理 `Unity.exe -batchmode -runTests -testPlatform EditMode|PlayMode`。
+
+提交功能改动前至少还应检查：
 
 - Unity 完成导入且 Console 无编译错误、缺失脚本或关键空引用。
 - 六个构建场景可以按预期切换，返回路径有效。

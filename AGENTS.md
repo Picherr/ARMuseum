@@ -48,9 +48,9 @@
 5. `HaiLuYangFan`
 6. `Navigation`
 
-`Scan` 是稀疏空间地图构建场景，当前不在构建列表。修改构建场景时必须同步检查 `GameController` 中的字符串加载逻辑和 UI Button 绑定。
+`Scan` 是稀疏空间地图构建场景，当前不在构建列表。修改构建场景时必须同步检查 `SceneNavigation` 中的场景跳转逻辑和 UI Button 绑定。
 
-`GameController.changeToGTYY()` 和 `changeToBQCM()` 指向仓库中不存在的 `GongTingYanLe`、`BingQiCheMa` 场景。不要默认启用这些入口，也不要为了消除引用而创建空场景；只有在需求明确且内容齐备时再补充。
+导航面板里的 `GTYYBtn` / `BQCMBtn`（宫廷雅乐 / 兵器车马）目前仅作为主题标签展示，对应展馆场景尚不存在；不要默认启用这些入口，也不要为了消除引用而创建空场景，只有在需求明确且内容齐备时再补充。
 
 ## Unity 资源与序列化规则
 
@@ -59,7 +59,7 @@
 - 场景和预制体优先使用匹配版本的 Unity Editor 修改。确需文本编辑 YAML 时，只做局部改动，并检查 YAML 结构、fileID、GUID 和换行未被批量重写。
 - 修改 `MonoBehaviour` 的字段名或类型会影响已有序列化数据。需要重命名时考虑 `FormerlySerializedAs`，并检查所有场景和预制体实例。
 - 被 UnityEvent、Button 或动画事件调用的 `public` 方法可能没有普通 C# 调用方；搜索不到代码引用不代表可以删除或重命名。
-- `GameObject.Find` 和 `Transform.Find` 使用硬编码层级路径，例如 `/UI/Canvas/...` 和 `/Canvas/Panel/...`。层级调整前必须搜索并同步调用方。
+- 大多数业务脚本已把 `GameObject.Find` 硬编码路径改为 `[SerializeField]` 字段，但 `Navigation/BuildController` 仍用 `GameObject.Find`（其 `Scan` 场景缺 `SceneMaster` 预制体，路径已失效）。层级调整前必须搜索并同步调用方。
 - `Resources.Load` 路径依赖文件位置和命名。中英文 UI 保持 `<name>_cn`、`<name>_en` 后缀以及现有 `cn`/`en` 目录结构。
 - EasyAR 目标数据使用目标图片与 `.etd` 文件配对。修改目标图后应使用正确 EasyAR 工具重新生成数据并在真机验证。
 - 不要无目的地触发全项目重导入、材质升级、纹理重新压缩或序列化版本升级。
@@ -112,7 +112,18 @@ Remove-Item "C:\path\to\file.txt"
 
 ## 验证流程
 
-仓库当前没有自定义自动化测试。根据改动范围执行尽可能完整的验证：
+仓库已引入 Unity Test Framework：
+
+- Edit Mode（`Assets/Tests/EditMode`）：`SceneNames`、`AppState` 纯逻辑测试。
+- Play Mode（`Assets/Tests/PlayMode`）：`SceneLoader` 逐一加载 Build Settings 中 6 个应用场景的冒烟测试。
+
+批处理运行方式：
+
+```powershell
+& "<Unity-Editor-Path>\Unity.exe" -batchmode -nographics -projectPath "<repo-root>" -runTests -testPlatform EditMode -testResults results.xml
+```
+
+根据改动范围执行尽可能完整的验证：
 
 ### 纯文档改动
 
