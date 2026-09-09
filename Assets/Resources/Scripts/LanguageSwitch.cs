@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -99,7 +96,6 @@ public class LanguageSwitch : MonoBehaviour
     {
         string Path = "UI/" + Directory + "/" + Lan + "/" + Target + "_" + Lan;
         Sprite sprite = Resources.Load<Sprite>(Path) as Sprite;
-        Instantiate(sprite);
 
         //string objPath = Target + "Btn";
         //Button btn = GameObject.Find(objPath).GetComponent<Button>();
@@ -111,7 +107,6 @@ public class LanguageSwitch : MonoBehaviour
         string Path = "UI/" + Directory + "/" + Lan + "/" + Target + "_" + Lan;
         Debug.Log(Path);
         Sprite sprite = Resources.Load<Sprite>(Path) as Sprite;
-        Instantiate(sprite);
 
         obj.sprite = sprite;
     }

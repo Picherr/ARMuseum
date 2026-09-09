@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +24,6 @@ public class NavInfoController : MonoBehaviour
                 }
                 Debug.Log(Path);
                 Sprite sprite = Resources.Load<Sprite>(Path) as Sprite;
-                Instantiate(sprite);
                 sprites[i] = sprite;
                 img.sprite = sprites[i];
             }
