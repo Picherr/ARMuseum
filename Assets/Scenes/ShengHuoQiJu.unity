@@ -495,7 +495,7 @@ PrefabInstance:
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 865517527}
+      objectReference: {fileID: 865517529}
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: ARMuseum.GameController, ARMuseum.Runtime
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -603,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 865517527}
+      objectReference: {fileID: 865517529}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -638,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: ARMuseum.GameController, ARMuseum.Runtime
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -1740,6 +1740,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 865517526}
+  - component: {fileID: 865517529}
+  - component: {fileID: 865517528}
   - component: {fileID: 865517527}
   m_Layer: 0
   m_Name: UI
@@ -1776,15 +1778,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 865517525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0e77efaebfeec4c8f535740af9d27d, type: 3}
+  m_Script: {fileID: 11500000, guid: f1230256944223344b010eaa0e5c9490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TipImg: {fileID: 0}
+  TouchTip: {fileID: 471418413}
+--- !u!114 &865517528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865517525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   AudioOn: {fileID: 770979760}
   AudioOff: {fileID: 719707546}
-  TouchTip: {fileID: 471418413}
-  imagetarget: []
-  WireFramePanel: {fileID: 0}
+--- !u!114 &865517529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865517525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae07c9ab0f938fa42a1bfeb52116f360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &936927687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1982,6 +2006,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 865517526}
     m_Modifications:
+    - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 865517529}
+    - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
+      objectReference: {fileID: 0}
     - target: {fileID: 3158121309102092912, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

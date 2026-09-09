@@ -629,7 +629,7 @@ PrefabInstance:
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 212793479}
+      objectReference: {fileID: 212793482}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -676,7 +676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: ARMuseum.GameController, ARMuseum.Runtime
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -1094,6 +1094,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212793478}
+  - component: {fileID: 212793482}
+  - component: {fileID: 212793481}
+  - component: {fileID: 212793480}
   - component: {fileID: 212793479}
   m_Layer: 0
   m_Name: UI
@@ -1130,16 +1133,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 212793477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0e77efaebfeec4c8f535740af9d27d, type: 3}
+  m_Script: {fileID: 11500000, guid: 68df1365443cf6d4baf2374ffae4dffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TipImg: {fileID: 0}
-  AudioOn: {fileID: 1716976522}
-  AudioOff: {fileID: 1228422283}
-  TouchTip: {fileID: 203691701}
   imagetarget:
   - {fileID: 1756194804}
   WireFramePanel: {fileID: 1151821119}
+--- !u!114 &212793480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212793477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1230256944223344b010eaa0e5c9490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TipImg: {fileID: 0}
+  TouchTip: {fileID: 203691701}
+--- !u!114 &212793481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212793477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioOn: {fileID: 1716976522}
+  AudioOff: {fileID: 1228422283}
+--- !u!114 &212793482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212793477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae07c9ab0f938fa42a1bfeb52116f360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &282136427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,14 +1791,14 @@ PrefabInstance:
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 212793479}
+      objectReference: {fileID: 212793482}
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: changeToBeginning
       objectReference: {fileID: 0}
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ARMuseum.GameController, ARMuseum.Runtime
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 1514769366055383691, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_RootOrder

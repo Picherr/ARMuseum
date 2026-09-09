@@ -630,8 +630,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5361048233363482995}
-        m_TargetAssemblyTypeName: ARMuseum.GameController, ARMuseum.Runtime
+      - m_Target: {fileID: 5361048233363482996}
+        m_TargetAssemblyTypeName: ARMuseum.SceneNavigation, ARMuseum.Runtime
         m_MethodName: changeToSHQJ
         m_Mode: 1
         m_Arguments:
@@ -8440,6 +8440,7 @@ GameObject:
   - component: {fileID: 5361048233363482991}
   - component: {fileID: 5361048233363482992}
   - component: {fileID: 5361048233363482993}
+  - component: {fileID: 5361048233363482996}
   - component: {fileID: 5361048233363482995}
   m_Layer: 5
   m_Name: Canvas
@@ -8457,15 +8458,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5361048233363482994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0e77efaebfeec4c8f535740af9d27d, type: 3}
+  m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TipImg: {fileID: 0}
   AudioOn: {fileID: 0}
   AudioOff: {fileID: 0}
-  TouchTip: {fileID: 0}
-  imagetarget: []
-  WireFramePanel: {fileID: 0}
+--- !u!114 &5361048233363482996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5361048233363482994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae07c9ab0f938fa42a1bfeb52116f360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &5361048233560067027
 CanvasRenderer:
   m_ObjectHideFlags: 0
