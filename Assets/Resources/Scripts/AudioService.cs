@@ -20,6 +20,12 @@ namespace ARMuseum
 
         [SerializeField] private Button audioButton;
 
+        // 静音/语音两态的按钮图标（普通态 + 按压态）
+        [SerializeField] private Sprite muteNormalSprite;   // UI/Button/BClick/静音
+        [SerializeField] private Sprite mutePressedSprite;  // UI/Button/AClick/静音
+        [SerializeField] private Sprite voiceNormalSprite;  // UI/Button/BClick/语音
+        [SerializeField] private Sprite voicePressedSprite; // UI/Button/AClick/语音
+
         private AudioSource _audioSource;
 
         private void Start()
@@ -46,26 +52,22 @@ namespace ARMuseum
 
         public void Audio()
         {
-            string Path1;
-            string Path2;
             Sprite sprite1;
             Sprite sprite2;
 
             if (AppState.IsAudioOn) // 当前声音功能开启
             {
-                Path1 = "UI/Button/BClick/静音";
-                Path2 = "UI/Button/AClick/静音";
+                sprite1 = muteNormalSprite;
+                sprite2 = mutePressedSprite;
                 AudioOff.SetActive(true);
             }
             else
             {
-                Path1 = "UI/Button/BClick/语音";
-                Path2 = "UI/Button/AClick/语音";
+                sprite1 = voiceNormalSprite;
+                sprite2 = voicePressedSprite;
                 AudioOn.SetActive(true);
             }
-            sprite1 = Resources.Load<Sprite>(Path1) as Sprite;
             audioButton.image.sprite = sprite1;
-            sprite2 = Resources.Load<Sprite>(Path2) as Sprite;
             SpriteState spriteState = new SpriteState();
             spriteState.pressedSprite = sprite2;
             audioButton.spriteState = spriteState;
