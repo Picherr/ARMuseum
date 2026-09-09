@@ -371,6 +371,8 @@ GameObject:
   - component: {fileID: 262217886}
   - component: {fileID: 262217885}
   - component: {fileID: 262217884}
+  - component: {fileID: 262217889}
+  - component: {fileID: 262217888}
   - component: {fileID: 262217887}
   m_Layer: 0
   m_Name: Main Camera
@@ -454,15 +456,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 262217883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0e77efaebfeec4c8f535740af9d27d, type: 3}
+  m_Script: {fileID: 11500000, guid: f1230256944223344b010eaa0e5c9490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TipImg: {fileID: 780634011}
+  TouchTip: {fileID: 0}
+--- !u!114 &262217888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262217883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   AudioOn: {fileID: 0}
   AudioOff: {fileID: 0}
-  TouchTip: {fileID: 0}
-  imagetarget: []
-  WireFramePanel: {fileID: 0}
+--- !u!114 &262217889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262217883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae07c9ab0f938fa42a1bfeb52116f360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &599268867
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +741,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262217887}
-        m_TargetAssemblyTypeName: ARMuseum.GameController, ARMuseum.Runtime
+        m_TargetAssemblyTypeName: ARMuseum.TipController, ARMuseum.Runtime
         m_MethodName: Tip
         m_Mode: 1
         m_Arguments:
