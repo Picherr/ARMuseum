@@ -24,11 +24,11 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Navigation")
+        if (SceneManager.GetActiveScene().name == SceneNames.Navigation)
             return;
         AudioBtn = GameObject.Find("/UI/MenuUI/Canvas/ButtonGroup/Audio").GetComponent<Button>();
         AudioBtn.onClick.AddListener(Audio);
-        if(SceneManager.GetActiveScene().name == "MeiYuDaGuan")
+        if(SceneManager.GetActiveScene().name == SceneNames.MeiYuDaGuan)
         {
             ypWarning = GameObject.Find("/UI/Canvas/YPWarning");
             animator = GameObject.Find("/UI/Canvas/GamePanel/Selections").GetComponent<Animator>();
@@ -41,13 +41,13 @@ public class GameController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         switch(sceneName)
         {
-            case "NanYueWenDi":
+            case SceneNames.NanYueWenDi:
                 NYWDUpdate();
                 break;
-            case "MeiYuDaGuan":
+            case SceneNames.MeiYuDaGuan:
                 MYDGUpdate();
                 break;
-            case "HaiLuYangFan":
+            case SceneNames.HaiLuYangFan:
                 HLYFUpdate();
                 break;
             default:
@@ -68,27 +68,27 @@ public class GameController : MonoBehaviour
 
     public void changeToBeginning()
     {
-        SceneManager.LoadScene("Beginning");
+        SceneManager.LoadScene(SceneNames.Beginning);
     }
 
     public void changeToNYWD()
     {
-        SceneManager.LoadScene("NanYueWenDi");
+        SceneManager.LoadScene(SceneNames.NanYueWenDi);
     }
 
     public void changeToMYDG()
     {
-        SceneManager.LoadScene("MeiYuDaGuan");
+        SceneManager.LoadScene(SceneNames.MeiYuDaGuan);
     }
 
     public void changeToHLYF()
     {
-        SceneManager.LoadScene("HaiLuYangFan");
+        SceneManager.LoadScene(SceneNames.HaiLuYangFan);
     }
 
     public void changeToSHQJ()
     {
-        SceneManager.LoadScene("ShengHuoQiJu");
+        SceneManager.LoadScene(SceneNames.ShengHuoQiJu);
     }
 
     public void changeToGTYY()
@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
 
     public void changeToNavigation()
     {
-        SceneManager.LoadScene("Navigation");
+        SceneManager.LoadScene(SceneNames.Navigation);
     }
 
     private void NYWDUpdate()
