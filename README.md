@@ -60,7 +60,7 @@ ARMuseum/
 | 4 | `HaiLuYangFan` | 海上丝绸之路主题 AR 展示 |
 | 5 | `Navigation` | 稀疏空间地图加载与定位 |
 
-`Assets/Scenes/Scan.unity` 用于构建并上传稀疏空间地图，目前没有加入构建列表。`GameController` 还保留了前往 `GongTingYanLe` 和 `BingQiCheMa` 的方法，但仓库中没有这两个场景；不要在 UI 中绑定这两个入口，除非补齐场景并同步构建设置。
+`Assets/Scenes/Scan.unity` 用于构建并上传稀疏空间地图，目前没有加入构建列表。
 
 ## 开始使用
 
