@@ -1,116 +1,120 @@
 using UnityEngine;
 
-public class SlidingDirection : MonoBehaviour
+namespace ARMuseum
 {
-    enum SlideVector
+    public class SlidingDirection : MonoBehaviour
     {
-        None,
-        Up,
-        Down,
-        Left,
-        Right
-    }
-
-    [SerializeField]
-    private bool executeMultipleTimes = false; // ÊÇ·ñÖ§³Ö¶à´ÎÖ´ÐÐ
-    [SerializeField]
-    private float offsetTime = 0.1f; // ÅÐ¶ÏµÄÊ±¼ä¼ä¸ô
-    [SerializeField]
-    private float slidingDistance = 80f; // »¬¶¯µÄ×îÐ¡¾àÀë
-
-    private Vector2 touchFirst = Vector2.zero; // ÊÖÖ¸¿ªÊ¼°´ÏÂµÄÎ»ÖÃ
-
-    private Vector2 touchSecond = Vector2.zero; // ÊÖÖ¸ÍÏ¶¯µÄÎ»ÖÃ
-
-    private SlideVector currentVector = SlideVector.None; // µ±Ç°»¬¶¯·½Ïò
-
-    private float timer; // Ê±¼ä¼ÆÊýÆ÷
-
-    void OnGUI()
-    {
-        if(Event.current.type==EventType.MouseDown)
+        enum SlideVector
         {
-            touchFirst = Event.current.mousePosition;
+            None,
+            Up,
+            Down,
+            Left,
+            Right
         }
 
-        if(Event.current.type==EventType.MouseDrag)
+        [SerializeField]
+        private bool executeMultipleTimes = false; // æ˜¯å¦æ”¯æŒå¤šæ¬¡æ‰§è¡Œ
+        [SerializeField]
+        private float offsetTime = 0.1f; // åˆ¤æ–­çš„æ—¶é—´é—´éš”
+        [SerializeField]
+        private float slidingDistance = 80f; // æ»‘åŠ¨çš„æœ€å°è·ç¦»
+
+        private Vector2 touchFirst = Vector2.zero; // æ‰‹æŒ‡å¼€å§‹æŒ‰ä¸‹çš„ä½ç½®
+
+        private Vector2 touchSecond = Vector2.zero; // æ‰‹æŒ‡æ‹–åŠ¨çš„ä½ç½®
+
+        private SlideVector currentVector = SlideVector.None; // å½“å‰æ»‘åŠ¨æ–¹å‘
+
+        private float timer; // æ—¶é—´è®¡æ•°å™¨
+
+        void OnGUI()
         {
-            touchSecond = Event.current.mousePosition;
+            if(Event.current.type==EventType.MouseDown)
+            {
+                touchFirst = Event.current.mousePosition;
+            }
 
-            timer += Time.deltaTime;
-
-            if(timer>offsetTime)
+            if(Event.current.type==EventType.MouseDrag)
             {
                 touchSecond = Event.current.mousePosition;
-                Vector2 slideDirection = touchFirst - touchSecond;
-                float x = slideDirection.x;
-                float y = slideDirection.y;
 
-                if(y + slidingDistance < x && y> -x - slidingDistance)
+                timer += Time.deltaTime;
+
+                if(timer>offsetTime)
                 {
-                    if(!executeMultipleTimes && currentVector == SlideVector.Left)
+                    touchSecond = Event.current.mousePosition;
+                    Vector2 slideDirection = touchFirst - touchSecond;
+                    float x = slideDirection.x;
+                    float y = slideDirection.y;
+
+                    if(y + slidingDistance < x && y> -x - slidingDistance)
                     {
-                        return;
+                        if(!executeMultipleTimes && currentVector == SlideVector.Left)
+                        {
+                            return;
+                        }
+
+                        Debug.Log("Left");
+
+                        currentVector = SlideVector.Left;
+                    }
+                    else if(y > x + slidingDistance && y < -x - slidingDistance)
+                    {
+                        if (!executeMultipleTimes && currentVector == SlideVector.Right)
+                        {
+                            return;
+                        }
+
+                        Debug.Log("right");
+
+                        currentVector = SlideVector.Right;
+                    }
+                    else if(y > x + slidingDistance && y - slidingDistance > -x)
+                    {
+                        if(!executeMultipleTimes && currentVector == SlideVector.Up)
+                        {
+                            return;
+                        }
+
+                        Debug.Log("up");
+
+                        currentVector = SlideVector.Up;
+                    }
+                    else if(y + slidingDistance < x && y < -x - slidingDistance)
+                    {
+                        if(!executeMultipleTimes && currentVector == SlideVector.Down)
+                        {
+                            return;
+                        }
+
+                        Debug.Log("down");
+
+                        currentVector = SlideVector.Down;
                     }
 
-                    Debug.Log("Left");
-
-                    currentVector = SlideVector.Left;
+                    timer = 0;
+                    touchFirst = touchSecond;
                 }
-                else if(y > x + slidingDistance && y < -x - slidingDistance)
-                {
-                    if (!executeMultipleTimes && currentVector == SlideVector.Right)
-                    {
-                        return;
-                    }
+            }
 
-                    Debug.Log("right");
-
-                    currentVector = SlideVector.Right;
-                }
-                else if(y > x + slidingDistance && y - slidingDistance > -x)
-                {
-                    if(!executeMultipleTimes && currentVector == SlideVector.Up)
-                    {
-                        return;
-                    }
-
-                    Debug.Log("up");
-
-                    currentVector = SlideVector.Up;
-                }
-                else if(y + slidingDistance < x && y < -x - slidingDistance)
-                {
-                    if(!executeMultipleTimes && currentVector == SlideVector.Down)
-                    {
-                        return;
-                    }
-
-                    Debug.Log("down");
-
-                    currentVector = SlideVector.Down;
-                }
-
-                timer = 0;
-                touchFirst = touchSecond;
+            if(Event.current.type==EventType.MouseUp)
+            {
+                currentVector = SlideVector.None; // åˆå§‹åŒ–æ–¹å‘
             }
         }
 
-        if(Event.current.type==EventType.MouseUp)
+        // Start is called before the first frame update
+        void Start()
         {
-            currentVector = SlideVector.None; // ³õÊ¼»¯·½Ïò
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -322,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &23940603
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,8 +999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &138534400
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1023,10 +1023,14 @@ PrefabInstance:
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1286717899}
+      objectReference: {fileID: 1286717904}
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: changeToBeginning
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309102092912, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1126,7 +1130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309128205527, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuUIController, Assembly-CSharp
+      value: ARMuseum.MenuUIController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309128205527, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1174,7 +1178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309249847078, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: NavigationController, Assembly-CSharp
+      value: ARMuseum.NavigationController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309249847078, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -1350,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158121310482435453, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LanguageSwitch, Assembly-CSharp
+      value: ARMuseum.LanguageSwitch, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121310482435453, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1995,8 +1999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &235564921
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2322,8 +2326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &306125200
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,14 +2889,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!114 &398245806 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1676139493712079449, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
   m_PrefabInstance: {fileID: 638409474}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810321316}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8812025f735b17f4288df5ecfb980c03, type: 3}
@@ -3109,8 +3113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &495504610
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3225,8 +3229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &558084015
 GameObject:
   m_ObjectHideFlags: 0
@@ -3317,8 +3321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &558084020
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3954,8 +3958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &623864588
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4014,7 +4018,7 @@ PrefabInstance:
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1286717899}
+      objectReference: {fileID: 1286717904}
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -4025,7 +4029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -4042,7 +4046,7 @@ PrefabInstance:
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1286717899}
+      objectReference: {fileID: 1286717904}
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -4053,40 +4057,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1286717899}
-    - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: changeToGTYY
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4098,7 +4074,7 @@ PrefabInstance:
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1286717899}
+      objectReference: {fileID: 1286717904}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -4109,7 +4085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -4126,7 +4102,7 @@ PrefabInstance:
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1286717899}
+      objectReference: {fileID: 1286717904}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -4137,53 +4113,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1286717899}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 810321316}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: changeToBQCM
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -4535,8 +4467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!1 &670707854
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,8 +4661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &736772162
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4833,8 +4765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &751565087
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5000,11 +4932,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794640477}
   m_CullTransparentMesh: 1
---- !u!1 &810321316 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1676139493712079448, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
-  m_PrefabInstance: {fileID: 638409474}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &843296513
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,8 +6010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1194524976
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6203,8 +6130,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286717897}
-  - component: {fileID: 1286717899}
   - component: {fileID: 1286717900}
+  - component: {fileID: 1286717904}
+  - component: {fileID: 1286717903}
+  - component: {fileID: 1286717902}
+  - component: {fileID: 1286717901}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -6231,30 +6161,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1286717899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286717896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0e77efaebfeec4c8f535740af9d27d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TipImg: {fileID: 0}
-  AudioOn: {fileID: 52080381}
-  AudioOff: {fileID: 306125200}
-  TouchTip: {fileID: 238655732}
-  imagetarget:
-  - {fileID: 254535313}
-  - {fileID: 365782559}
-  - {fileID: 1395556268}
-  - {fileID: 1583375364}
-  - {fileID: 129373270}
-  - {fileID: 1325288794}
-  WireFramePanel: {fileID: 951216605}
 --- !u!114 &1286717900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6265,6 +6171,83 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38fb9e19d37cb0d41be7627dbc43c721, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!114 &1286717901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286717896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a257b6e89f3a0bf48a8bd43e9ad284ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imagetarget:
+  - {fileID: 254535313}
+  - {fileID: 365782559}
+  - {fileID: 1395556268}
+  - {fileID: 1583375364}
+  - {fileID: 129373270}
+  - {fileID: 1325288794}
+  WireFramePanel: {fileID: 951216605}
+  ypWarning: {fileID: 1058464155}
+  animator: {fileID: 1750582325}
+  gamePanel: {fileID: 794640477}
+  introImages:
+  - {fileID: 445719870}
+  - {fileID: 1184359135}
+  partPanels:
+  - {fileID: 129567665}
+  - {fileID: 178273795}
+  - {fileID: 1902899609}
+  - {fileID: 458695919}
+--- !u!114 &1286717902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286717896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1230256944223344b010eaa0e5c9490, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  TipImg: {fileID: 0}
+  TouchTip: {fileID: 238655732}
+--- !u!114 &1286717903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286717896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  handleAudioToggle: 1
+  AudioOn: {fileID: 52080381}
+  AudioOff: {fileID: 306125200}
+  audioButton: {fileID: 1564448872}
+  muteNormalSprite: {fileID: 21300000, guid: 080d6fa78542d3b4ea13b6b871d83bfe, type: 3}
+  mutePressedSprite: {fileID: 21300000, guid: 24fc78d8f572faf4bb16a7718f9b3738, type: 3}
+  voiceNormalSprite: {fileID: 21300000, guid: fb3e561f61867574aa63ae3f5f11dd97, type: 3}
+  voicePressedSprite: {fileID: 21300000, guid: 41a19717fc954414187aa76df546a740, type: 3}
+--- !u!114 &1286717904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286717896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae07c9ab0f938fa42a1bfeb52116f360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1299283657
@@ -6482,8 +6465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1374621132
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7062,6 +7045,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d9916631bae8be45b1772c8b580ed19, type: 3}
+--- !u!114 &1564448872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2755671164091507254, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+  m_PrefabInstance: {fileID: 171668317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823416013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1001 &1576050194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7614,8 +7608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1687854334
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8219,8 +8213,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1286717899}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 1286717901}
+        m_TargetAssemblyTypeName: ARMuseum.GamePanelController, ARMuseum.Runtime
         m_MethodName: GameOver
         m_Mode: 1
         m_Arguments:
@@ -8364,8 +8358,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1286717899}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 1286717901}
+        m_TargetAssemblyTypeName: ARMuseum.GamePanelController, ARMuseum.Runtime
         m_MethodName: GameChoice
         m_Mode: 1
         m_Arguments:
@@ -8846,8 +8840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &1904189262
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9375,8 +9369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &2013148798
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9479,8 +9473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &2030539627
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9693,8 +9687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2f04225cc92438ac710bebb9cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentWhenDrag: {fileID: 0}
-  ParentInitial: {fileID: 0}
+  ParentWhenDrag: {fileID: 794640477}
+  ypController: {fileID: 1286717900}
 --- !u!225 &2066866362
 CanvasGroup:
   m_ObjectHideFlags: 0

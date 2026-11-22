@@ -2,47 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuUIController : MonoBehaviour
+namespace ARMuseum
 {
-    public GameObject SettingMenu;
-    public GameObject Game;
-    public GameObject Details;
-    public GameObject Sound;
-    public GameObject Panel;
-
-    private bool isPanelActive = false;
-
-    public void OpenSettingMenu()
+    public class MenuUIController : MonoBehaviour
     {
-        if(!isPanelActive) // Œ¥µ„ª˜¡–±Ì≤Àµ•
-        {
-            Game.SetActive(false);
-            Details.SetActive(false);
-            Sound.SetActive(false);
-            Panel.SetActive(true);
+        public GameObject SettingMenu;
+        public GameObject Game;
+        public GameObject Details;
+        public GameObject Sound;
+        public GameObject Panel;
 
-            isPanelActive = true;
-        }
-        else
+        private bool isPanelActive = false;
+
+        public void OpenSettingMenu()
         {
-            Game.SetActive(true);
-            Details.SetActive(true);
-            Sound.SetActive(true);
+            if(!isPanelActive) // Êú™ÁÇπÂáªÂàóË°®ËèúÂçï
+            {
+                Game.SetActive(false);
+                Details.SetActive(false);
+                Sound.SetActive(false);
+                Panel.SetActive(true);
+
+                isPanelActive = true;
+            }
+            else
+            {
+                Game.SetActive(true);
+                Details.SetActive(true);
+                Sound.SetActive(true);
+                Panel.SetActive(false);
+
+                isPanelActive = false;
+            }
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
             Panel.SetActive(false);
+        }
 
-            isPanelActive = false;
+        // Update is called once per frame
+        void Update()
+        {
+
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Panel.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

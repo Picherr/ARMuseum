@@ -60,7 +60,27 @@ ARMuseum/
 | 4 | `HaiLuYangFan` | 海上丝绸之路主题 AR 展示 |
 | 5 | `Navigation` | 稀疏空间地图加载与定位 |
 
-`Assets/Scenes/Scan.unity` 用于构建并上传稀疏空间地图，目前没有加入构建列表。`GameController` 还保留了前往 `GongTingYanLe` 和 `BingQiCheMa` 的方法，但仓库中没有这两个场景；不要在 UI 中绑定这两个入口，除非补齐场景并同步构建设置。
+`Assets/Scenes/Scan.unity` 用于构建并上传稀疏空间地图，目前没有加入构建列表。
+
+## 代码架构
+
+业务脚本统一收在 `Assets/Resources/Scripts`（`ARMuseum` 命名空间，程序集 `ARMuseum.Runtime`，引用 `EasyAR.Sense`）。重构后按职责拆分为：
+
+| 组件 | 职责 |
+| --- | --- |
+| `SceneNames` / `SceneLoader` | 场景名常量与场景跳转统一入口（静态） |
+| `AppState` | 应用级全局状态（语言、音频开关） |
+| `SceneNavigation` | 各 `changeToXXX` 场景跳转方法，供按钮 onClick 引用 |
+| `AudioService` | SFX 播放和全局静音控制；启用时同步开关与图标，背景音乐仍由 `BGM.prefab` 的 AudioSource 播放 |
+| `TipController` | 启动页提示与触摸提示 |
+| `GamePanelController` | 美玉大观场景的游戏面板与拼图提示 |
+| `WireFrameController` | 南越文帝 / 海路扬帆场景的线框图切换 |
+| `NavigationController` / `NavInfoController` | 楼层导航与导航信息展示 |
+| `LanguageSwitch` | 中英文 UI 切换 |
+| `PuzzleDrag` / `YPController` | 玉佩拼图拖拽与匹配判定 |
+| `BuildController` / `LocalizeController` | 稀疏空间地图的构建与定位（开发工具） |
+
+优先使用 `[SerializeField]` 字段在 Inspector 里接线，避免运行时 `GameObject.Find` 硬编码路径；仅语言相关贴图按 `Resources.Load` 从 `cn`/`en` 目录动态加载。
 
 ## 开始使用
 
@@ -73,7 +93,7 @@ ARMuseum/
 当前 EasyAR 依赖是本地包，清单中的路径为：
 
 ```json
-"com.easyar.sense": "file:D:/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package"
+"com.easyar.sense": "file:D:/0Source/EasyARPlugin/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package"
 ```
 
 该路径不会随仓库一起提供。首次打开项目之前，需要完成以下一种处理：
@@ -112,26 +132,36 @@ EasyAR 配置位于 `Assets/XR/Settings/EasyAR Settings.asset`，其中包含许
 
 1. 在 Editor 中打开 `Assets/Scenes/Scan.unity`，或在需要发布地图构建工具时将它加入构建列表。
 2. 在支持运动跟踪的真机上扫描环境；进入 Tracking 状态后填写地图名称并保存。
-3. 保存成功后，`BuildController` 会把 `MapID` 和 `MapName` 写入 `PlayerPrefs`。
-4. 在 `Navigation` 场景中使用相同的地图 ID 和名称启动定位。
+3. 填写非空地图名称并在跟踪稳定后保存。上传期间禁止重复保存，成功后 `BuildController` 会把 `MapID` 和 `MapName` 写入并保存到 `PlayerPrefs`。
+4. 点击“前往定位”进入 `Navigation`；地图 ID 和名称为空时，会自动回填上次保存的信息。
+5. 确认 ID 和名称后，先点击“加载地图”，加载成功后再点击“开始定位”；定位时可点击“停止定位”。切换地图前先停止定位，再修改输入并重新加载。
 
-当前 `LocalizeController` 会在场景启动时立即调用定位，且读取 `PlayerPrefs` 的条件写成了 `inputID.text.Length < 0`，该条件不会成立。调试导航时应先确保场景输入框或 `MapManagerSource` 已配置正确；若要依赖 Scan 到 Navigation 的自动传递，需要先修正并验证这段逻辑。
+`Scan` 的界面和建图组件使用 Inspector 引用；`Navigation` 不会在启动时自动下载或定位。地图加载、卸载和上传失败后应按界面提示重试；实际服务权限、网络、运动跟踪和定位效果仍需在 Android 真机验证。
 
 ## 开发注意事项
 
 - Unity 资源和对应 `.meta` 文件必须一起提交，不能单独重建或丢弃 `.meta`。
-- 多个脚本使用 `GameObject.Find`、`Resources.Load`、场景名及对象名硬编码；重命名场景、层级对象或资源前应先搜索所有引用。
+- 多个脚本此前用 `GameObject.Find`、`Resources.Load`、场景名及对象名硬编码；重构后大多数 `GameObject.Find` 已改为 `[SerializeField]` 字段，但重命名场景、层级对象或资源前仍应先搜索所有引用。
 - 中英文资源遵循 `Assets/Resources/UI/<类型>/<cn|en>/<名称>_<cn|en>` 的路径约定，修改命名会影响 `LanguageSwitch` 和 `NavInfoController`。
 - `StreamingAssets` 中目标图片与同名 `.etd` 数据应成对维护。
-- 部分业务脚本使用 GBK 兼容编码，批量格式化或统一转码可能制造大范围无关差异；修改时应检查中文注释和字符串是否保持正确。
-- 仓库包含大量模型、PSD、BMP、PNG 和音频资源，当前未配置 Git LFS。替换大文件前应评估仓库体积和团队协作影响。
+- `Assets/Resources/Scripts` 下的业务脚本已统一为 UTF-8（包括兼容 UTF-8 的 ASCII 文件）。修改时保留中文注释和字符串，不要批量转码或全文件格式化；第三方文件仍应逐个核对原有编码。
+- 仓库已通过 `.gitattributes` 为模型、图像、音频和字体配置部分扩展名的 Git LFS 规则；当前 `git lfs ls-files` 为空，现有资源及历史尚未迁移到 LFS。规则未包含 `.etd`，且除 `.FBX` 外未单独列出大写扩展名；添加资源前应检查属性匹配，不能假定所有二进制格式均已覆盖。替换大文件前仍应评估仓库体积和团队协作影响。
 - 不要在没有明确需求时修改 `Assets/Common`、`Assets/Plugins` 或 `Assets/BuildReport` 内的第三方代码。
 
 更详细的协作和自动化代理规则见 [AGENTS.md](AGENTS.md)。
 
 ## 验证建议
 
-仓库当前没有自定义 Edit Mode 或 Play Mode 测试。提交功能改动前至少应检查：
+仓库已引入 Unity Test Framework：
+
+- Edit Mode（`Assets/Tests/EditMode`）：场景常量与全局状态、拼图和触控切换、地图保存/失败恢复、地图场景引用和字体完整性。
+- Play Mode（`Assets/Tests/PlayMode`）：音频开关与生命周期、6 个构建场景加载，以及 Editor 中 `Scan → Navigation` 的按钮跳转和地图信息回填。
+
+Windows Editor 不提供地图场景所需的移动端运动跟踪源。场景冒烟测试仅把 SDK 对该设备限制的特定诊断列为预期，其他错误仍会使测试失败；这些测试不能替代 Android 真机的扫描、上传与定位验证。
+
+运行方式：Test Runner 窗口，或批处理 `Unity.exe -batchmode -runTests -testPlatform EditMode|PlayMode`。
+
+提交功能改动前至少还应检查：
 
 - Unity 完成导入且 Console 无编译错误、缺失脚本或关键空引用。
 - 六个构建场景可以按预期切换，返回路径有效。

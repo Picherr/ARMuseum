@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772524927274792, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -392,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525079270349, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525536474693, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525631884315, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -629,7 +629,7 @@ PrefabInstance:
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 212793479}
+      objectReference: {fileID: 212793482}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -672,11 +672,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525673810807, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -772,7 +772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NavInfoController, Assembly-CSharp
+      value: ARMuseum.NavInfoController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7892772525689907039, guid: 3905fdb5caf51fb469c57c5234b6b829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -1094,6 +1094,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212793478}
+  - component: {fileID: 212793482}
+  - component: {fileID: 212793481}
+  - component: {fileID: 212793480}
   - component: {fileID: 212793479}
   m_Layer: 0
   m_Name: UI
@@ -1130,16 +1133,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 212793477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0e77efaebfeec4c8f535740af9d27d, type: 3}
+  m_Script: {fileID: 11500000, guid: 68df1365443cf6d4baf2374ffae4dffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TipImg: {fileID: 0}
-  AudioOn: {fileID: 1716976522}
-  AudioOff: {fileID: 1228422283}
-  TouchTip: {fileID: 203691701}
   imagetarget:
   - {fileID: 1756194804}
   WireFramePanel: {fileID: 1151821119}
+  introImage1: {fileID: 434336318}
+--- !u!114 &212793480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212793477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1230256944223344b010eaa0e5c9490, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  TipImg: {fileID: 0}
+  TouchTip: {fileID: 203691701}
+--- !u!114 &212793481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212793477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291e140003b9cf14ca0ee71398b0b1b2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  handleAudioToggle: 1
+  AudioOn: {fileID: 1716976522}
+  AudioOff: {fileID: 1228422283}
+  audioButton: {fileID: 1564448872}
+  muteNormalSprite: {fileID: 21300000, guid: 080d6fa78542d3b4ea13b6b871d83bfe, type: 3}
+  mutePressedSprite: {fileID: 21300000, guid: 24fc78d8f572faf4bb16a7718f9b3738, type: 3}
+  voiceNormalSprite: {fileID: 21300000, guid: fb3e561f61867574aa63ae3f5f11dd97, type: 3}
+  voicePressedSprite: {fileID: 21300000, guid: 41a19717fc954414187aa76df546a740, type: 3}
+--- !u!114 &212793482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212793477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae07c9ab0f938fa42a1bfeb52116f360, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1 &282136427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,14 +1798,14 @@ PrefabInstance:
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 212793479}
+      objectReference: {fileID: 212793482}
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: changeToBeginning
       objectReference: {fileID: 0}
     - target: {fileID: 1514769366055383690, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: ARMuseum.SceneNavigation, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 1514769366055383691, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_RootOrder
@@ -1891,7 +1937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309128205527, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuUIController, Assembly-CSharp
+      value: ARMuseum.MenuUIController, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121309128205527, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -2107,7 +2153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158121310482435453, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LanguageSwitch, Assembly-CSharp
+      value: ARMuseum.LanguageSwitch, ARMuseum.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 3158121310482435453, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2915,6 +2961,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 837305902660757681, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
   m_PrefabInstance: {fileID: 622278767}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1564448872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2755671164091507254, guid: 09595bc6de2e4ff42a0af17793e924aa, type: 3}
+  m_PrefabInstance: {fileID: 622278767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633985648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1001 &1645128788
 PrefabInstance:
   m_ObjectHideFlags: 0

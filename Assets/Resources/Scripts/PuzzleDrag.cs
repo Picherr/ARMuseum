@@ -1,76 +1,127 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
-using System;
-using Unity.VisualScripting;
 
-public class PuzzleDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+namespace ARMuseum
 {
-    private GameObject ParentWhenDrag;
-    private GameObject ParentInitial;
-
-    private YPController ypController;
-
-    private Vector3 touchOffset; // 拖拽的偏移量
-    private Transform panel; // 场景中的Panel，设置拖拽过程中的父物体
-    private ScrollRect scrollRect; // ScrollView的ScrollRect组件
-    private bool isDragItem; // 拖拽的是否是子物体
-
-    void Awake()
+    public class PuzzleDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        Input.multiTouchEnabled = false; // 限制多指拖拽
-        /*panel = GameObject.Find("/UI/Canvas/GamePanel").GetComponent<Transform>();
-        scrollRect = GameObject.Find("/UI/Canvas/GamePanel/Selections/ScrollView").GetComponent<ScrollRect>();
-        isDragItem = false;*/
-    }
+        [SerializeField] private GameObject ParentWhenDrag;
+        [SerializeField] private YPController ypController;
+        private static PuzzleDrag activeDrag;
+        private int dragPointerId;
+        private Transform initialParent;
+        private int initialSiblingIndex;
+        private Vector3 initialPosition;
+        private Vector3 initialScale;
+        private Quaternion initialRotation;
+        private CanvasGroup canvasGroup;
+        private bool initialBlocksRaycasts;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        ParentWhenDrag = GameObject.Find("UI/Canvas/GamePanel");
-        ypController = GameObject.Find("UI").GetComponent<YPController>(); 
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        ParentInitial = transform.parent.gameObject;
-        transform.GetComponent<CanvasGroup>().blocksRaycasts = false;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = Input.mousePosition;
-        transform.SetParent(ParentWhenDrag.transform);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        GameObject obj = eventData.pointerCurrentRaycast.gameObject;
-        //Debug.Log(obj.transform.name);
-        //Debug.Log(transform.name);
-        if(obj.transform.tag == "board" && ypController.Check(transform.name, obj.transform.name))
+        void Awake()
         {
-            //Debug.Log("开始匹配");
-            transform.AddComponent<Image>();
-            Sprite sprite = transform.GetComponent<Image>().sprite;
-            obj.AddComponent<Image>();
-            obj.GetComponent<Image>().sprite = sprite;
-            obj.GetComponent<Image>().color = new Color(255.0f, 255.0f, 255.0f, 255.0f);
-            //Debug.Log("完成匹配");
-            transform.SetParent(ParentInitial.transform);
-            int index = int.Parse(transform.name.Remove(0, 5));
-            transform.SetSiblingIndex(index);
-            transform.gameObject.SetActive(false);
+            canvasGroup = GetComponent<CanvasGroup>();
         }
-        else
+
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            transform.SetParent(ParentInitial.transform);
-            int index = int.Parse(transform.name.Remove(0, 5));
-            transform.SetSiblingIndex(index);
+            if (eventData == null || !isActiveAndEnabled || activeDrag != null ||
+                ParentWhenDrag == null || transform.parent == null || canvasGroup == null)
+            {
+                return;
+            }
+
+            activeDrag = this;
+            dragPointerId = eventData.pointerId;
+            initialParent = transform.parent;
+            initialSiblingIndex = transform.GetSiblingIndex();
+            initialPosition = transform.localPosition;
+            initialScale = transform.localScale;
+            initialRotation = transform.localRotation;
+            initialBlocksRaycasts = canvasGroup.blocksRaycasts;
+            canvasGroup.blocksRaycasts = false;
+            transform.SetParent(ParentWhenDrag.transform, true);
         }
-        transform.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (eventData == null || activeDrag != this || eventData.pointerId != dragPointerId)
+            {
+                return;
+            }
+
+            var dragPlane = ParentWhenDrag != null ? ParentWhenDrag.transform as RectTransform : null;
+            Vector3 position;
+            if (dragPlane != null && RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                dragPlane, eventData.position, eventData.pressEventCamera, out position))
+            {
+                transform.position = position;
+            }
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (eventData == null || activeDrag != this || eventData.pointerId != dragPointerId)
+            {
+                return;
+            }
+
+            var target = eventData.pointerCurrentRaycast.gameObject;
+            var sourceImage = GetComponent<Image>();
+            bool matched = target != null && target.CompareTag("board") &&
+                ypController != null && sourceImage != null && ypController.Check(name, target.name);
+            if (matched)
+            {
+                var targetImage = target.GetComponent<Image>();
+                if (targetImage == null)
+                {
+                    targetImage = target.AddComponent<Image>();
+                }
+                targetImage.sprite = sourceImage.sprite;
+                targetImage.color = Color.white;
+            }
+
+            FinishDrag();
+            if (matched)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
+        private void OnDisable()
+        {
+            FinishDrag();
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus)
+            {
+                FinishDrag();
+            }
+        }
+
+        private void FinishDrag()
+        {
+            if (activeDrag != this)
+            {
+                return;
+            }
+
+            activeDrag = null;
+            if (initialParent != null)
+            {
+                transform.SetParent(initialParent, false);
+                transform.SetSiblingIndex(initialSiblingIndex);
+                transform.localPosition = initialPosition;
+                transform.localScale = initialScale;
+                transform.localRotation = initialRotation;
+            }
+            if (canvasGroup != null)
+            {
+                canvasGroup.blocksRaycasts = initialBlocksRaycasts;
+            }
+        }
     }
+
 }

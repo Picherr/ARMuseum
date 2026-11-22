@@ -3,117 +3,121 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// ÊµÏÖUIÍ¼Æ¬ÍÏ×§¹¦ÄÜ
-public class UIImageDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+namespace ARMuseum
 {
-    [Header("ÊÇ·ñ¾«×¼ÍÏ×§")]
-    public bool m_isPrecision;
-
-    [Header("ÊÇ·ñ¿ªÆôËõ·Å")]
-    public bool isCanZoom;
-
-    [Tooltip("×î´ó·Å´ó±¶Êı")]
-    public float m_maxScale = 4.0f;
-
-    [Tooltip("×îĞ¡ËõĞ¡±¶Êı")]
-    public float m_minScale = 0.4f;
-
-    // ´æ´¢Í¼Æ¬ÖĞĞÄµãÓëÊó±êµã»÷µãµÄÆ«ÒÆÁ¿
-    private Vector3 m_offset;
-
-    // ´æ´¢µ±Ç°ÍÏ×§Í¼Æ¬µÄRectTransform×é¼ş
-    private RectTransform m_rt;
-
-    public void OnBeginDrag(PointerEventData eventData)
+    // å®ç°UIå›¾ç‰‡æ‹–æ‹½åŠŸèƒ½
+    public class UIImageDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        // Èç¹û¾«×¼ÍÏ×§Ôò½øĞĞ¼ÆËãÆ«ÒÆÁ¿²Ù×÷
-        if(m_isPrecision)
+        [Header("æ˜¯å¦ç²¾å‡†æ‹–æ‹½")]
+        public bool m_isPrecision;
+
+        [Header("æ˜¯å¦å¼€å¯ç¼©æ”¾")]
+        public bool isCanZoom;
+
+        [Tooltip("æœ€å¤§æ”¾å¤§å€æ•°")]
+        public float m_maxScale = 4.0f;
+
+        [Tooltip("æœ€å°ç¼©å°å€æ•°")]
+        public float m_minScale = 0.4f;
+
+        // å­˜å‚¨å›¾ç‰‡ä¸­å¿ƒç‚¹ä¸é¼ æ ‡ç‚¹å‡»ç‚¹çš„åç§»é‡
+        private Vector3 m_offset;
+
+        // å­˜å‚¨å½“å‰æ‹–æ‹½å›¾ç‰‡çš„RectTransformç»„ä»¶
+        private RectTransform m_rt;
+
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            // ´æ´¢µã»÷Ê±µÄÊó±ê×ø±ê
-            Vector3 tWorldPos;
-            // UIÆÁÄ»×ø±ê×ª»»ÎªÊÀ½ç×ø±ê
-            RectTransformUtility.ScreenPointToWorldPointInRectangle(m_rt, eventData.position, eventData.pressEventCamera, out tWorldPos);
-            // ¼ÆËãÆ«ÒÆÁ¿
-            m_offset = transform.position - tWorldPos;
-        }
-        // ·ñÔò£¬Æ«ÒÆÁ¿Ä¬ÈÏÎª0
-        else
-        {
-            m_offset = Vector3.zero;
-        }
-
-        SetDraggedPosition(eventData);
-        
-        // throw new System.NotImplementedException();
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        SetDraggedPosition(eventData);
-        // throw new System.NotImplementedException();
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        SetDraggedPosition(eventData);
-        // throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // ³õÊ¼»¯
-        m_rt = gameObject.GetComponent<RectTransform>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(isCanZoom)
-        {
-            float s = Input.GetAxis("Mouse ScrollWheel");
-            if(s>0)
+            // å¦‚æœç²¾å‡†æ‹–æ‹½åˆ™è¿›è¡Œè®¡ç®—åç§»é‡æ“ä½œ
+            if(m_isPrecision)
             {
-                Magnify();
+                // å­˜å‚¨ç‚¹å‡»æ—¶çš„é¼ æ ‡åæ ‡
+                Vector3 tWorldPos;
+                // UIå±å¹•åæ ‡è½¬æ¢ä¸ºä¸–ç•Œåæ ‡
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(m_rt, eventData.position, eventData.pressEventCamera, out tWorldPos);
+                // è®¡ç®—åç§»é‡
+                m_offset = transform.position - tWorldPos;
             }
-            else if(s<0)
+            // å¦åˆ™ï¼Œåç§»é‡é»˜è®¤ä¸º0
+            else
             {
-                Shrink();
+                m_offset = Vector3.zero;
+            }
+
+            SetDraggedPosition(eventData);
+
+            // throw new System.NotImplementedException();
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            SetDraggedPosition(eventData);
+            // throw new System.NotImplementedException();
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            SetDraggedPosition(eventData);
+            // throw new System.NotImplementedException();
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            // åˆå§‹åŒ–
+            m_rt = gameObject.GetComponent<RectTransform>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if(isCanZoom)
+            {
+                float s = Input.GetAxis("Mouse ScrollWheel");
+                if(s>0)
+                {
+                    Magnify();
+                }
+                else if(s<0)
+                {
+                    Shrink();
+                }
+            }
+        }
+
+        void Magnify()
+        {
+            if(m_rt.localScale.x<m_maxScale)
+            {
+                m_rt.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            }
+        }
+
+        void Shrink()
+        {
+            if (m_rt.localScale.x > m_minScale)
+            {
+                m_rt.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+            }
+        }
+
+        public void ImageReset()
+        {
+            m_rt.localScale = Vector3.one;
+            m_rt.localPosition = Vector3.zero;
+        }
+
+        private void SetDraggedPosition(PointerEventData eventData)
+        {
+            // å­˜å‚¨å½“å‰é¼ æ ‡æ‰€åœ¨ä½ç½®
+            Vector3 globalMousePos;
+            // UIå±å¹•åæ ‡è½¬æ¢ä¸ºä¸–ç•Œåæ ‡
+            if(RectTransformUtility.ScreenPointToWorldPointInRectangle(m_rt,eventData.position,eventData.pressEventCamera,out globalMousePos))
+            {
+                // è®¾ç½®ä½ç½®åŠåç§»é‡
+                m_rt.position = globalMousePos + m_offset;
             }
         }
     }
 
-    void Magnify()
-    {
-        if(m_rt.localScale.x<m_maxScale)
-        {
-            m_rt.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-        }
-    }
-
-    void Shrink()
-    {
-        if (m_rt.localScale.x > m_minScale)
-        {
-            m_rt.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
-        }
-    }
-
-    public void ImageReset()
-    {
-        m_rt.localScale = Vector3.one;
-        m_rt.localPosition = Vector3.zero;
-    }
-
-    private void SetDraggedPosition(PointerEventData eventData)
-    {
-        // ´æ´¢µ±Ç°Êó±êËùÔÚÎ»ÖÃ
-        Vector3 globalMousePos;
-        // UIÆÁÄ»×ø±ê×ª»»ÎªÊÀ½ç×ø±ê
-        if(RectTransformUtility.ScreenPointToWorldPointInRectangle(m_rt,eventData.position,eventData.pressEventCamera,out globalMousePos))
-        {
-            // ÉèÖÃÎ»ÖÃ¼°Æ«ÒÆÁ¿
-            m_rt.position = globalMousePos + m_offset;
-        }
-    }
 }

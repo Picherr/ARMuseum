@@ -48,9 +48,9 @@
 5. `HaiLuYangFan`
 6. `Navigation`
 
-`Scan` 是稀疏空间地图构建场景，当前不在构建列表。修改构建场景时必须同步检查 `GameController` 中的字符串加载逻辑和 UI Button 绑定。
+`Scan` 是稀疏空间地图构建场景，当前不在构建列表。修改构建场景时必须同步检查 `SceneNavigation` 中的场景跳转逻辑和 UI Button 绑定。
 
-`GameController.changeToGTYY()` 和 `changeToBQCM()` 指向仓库中不存在的 `GongTingYanLe`、`BingQiCheMa` 场景。不要默认启用这些入口，也不要为了消除引用而创建空场景；只有在需求明确且内容齐备时再补充。
+导航面板里的 `GTYYBtn` / `BQCMBtn`（宫廷雅乐 / 兵器车马）目前仅作为主题标签展示，对应展馆场景尚不存在；不要默认启用这些入口，也不要为了消除引用而创建空场景，只有在需求明确且内容齐备时再补充。
 
 ## Unity 资源与序列化规则
 
@@ -59,7 +59,7 @@
 - 场景和预制体优先使用匹配版本的 Unity Editor 修改。确需文本编辑 YAML 时，只做局部改动，并检查 YAML 结构、fileID、GUID 和换行未被批量重写。
 - 修改 `MonoBehaviour` 的字段名或类型会影响已有序列化数据。需要重命名时考虑 `FormerlySerializedAs`，并检查所有场景和预制体实例。
 - 被 UnityEvent、Button 或动画事件调用的 `public` 方法可能没有普通 C# 调用方；搜索不到代码引用不代表可以删除或重命名。
-- `GameObject.Find` 和 `Transform.Find` 使用硬编码层级路径，例如 `/UI/Canvas/...` 和 `/Canvas/Panel/...`。层级调整前必须搜索并同步调用方。
+- 业务控制器优先使用 `[SerializeField]` 引用；`Scan` 的建图界面和 `BuildController` 已显式接线。层级调整前必须搜索并同步调用方，避免破坏建图、定位及 UI 引用。
 - `Resources.Load` 路径依赖文件位置和命名。中英文 UI 保持 `<name>_cn`、`<name>_en` 后缀以及现有 `cn`/`en` 目录结构。
 - EasyAR 目标数据使用目标图片与 `.etd` 文件配对。修改目标图后应使用正确 EasyAR 工具重新生成数据并在真机验证。
 - 不要无目的地触发全项目重导入、材质升级、纹理重新压缩或序列化版本升级。
@@ -73,19 +73,19 @@
 - 对 `FindObjectOfType`、`GameObject.Find`、`Resources.Load` 和 Inspector 引用增加必要的空值保护，但不要在未验证场景绑定时进行大范围重构。
 - 保留由 UI 和场景序列化绑定的方法签名。需要破坏性调整时，同时更新所有场景、预制体和 UnityEvent。
 - 新日志应说明场景或功能上下文，避免每帧输出；不要记录许可证、API Key、API Secret、地图服务密钥或其他敏感值。
-- 业务脚本存在 ASCII/UTF-8 与 GBK 兼容编码混用。读取中文乱码时先按 GBK 检查；不要把转码、全文件格式化和功能改动混在同一提交中。
+- `Assets/Resources/Scripts` 下的业务脚本已统一为 UTF-8（包括兼容 UTF-8 的 ASCII 文件），修改时保持编码和中文内容，不要批量转码或全文件格式化。第三方文件的编码应逐个检查；出现乱码时先核对原始编码，不要直接按 UTF-8 重写。
 - 删除无用代码前确认没有 UnityEvent、动画事件、反射或序列化引用。
 
 ## EasyAR 与 Vuforia
 
-- `Packages/manifest.json` 中 EasyAR 当前使用开发机绝对路径 `file:D:/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package`。在其他机器上验证前需要将该依赖改为有效路径或恢复同一路径。
+- `Packages/manifest.json` 中 EasyAR 当前使用开发机绝对路径 `file:D:/0Source/EasyARPlugin/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package`。在其他机器上验证前需要将该依赖改为有效路径或恢复同一路径。
 - 不要静默升级 EasyAR。升级时应单独说明版本、迁移影响，并验证图像跟踪、稀疏空间地图、Android 构建和所有 EasyAR 场景组件。
 - `Assets/XR/Settings/EasyAR Settings.asset` 含许可证和服务配置。读取时必须遮蔽敏感值；不要把值复制到回复、日志、测试快照或新文档。
 - `Assets/Common` 的 Vuforia 程序集通过 `VUFORIA_ENABLED` 和包版本定义保护。不要为了让 EasyAR 功能工作而安装 Vuforia，也不要移除这些条件约束，除非任务明确要求迁移或清理。
 
 ## 大文件与第三方资源
 
-- 仓库当前没有 `.gitattributes`/Git LFS 配置，但包含大型 FBX、PSD、BMP、PNG 和 MP3。不要无理由复制、重新导出或替换大文件。
+- 仓库已有 `.gitattributes`，为模型、图像、音频和字体的部分扩展名配置 Git LFS；当前 `git lfs ls-files` 为空，尚未迁移现有资源或重写历史。规则未包含 `.etd`，且除 `.FBX` 外未单独列出大写扩展名，新增或替换资源前必须核对属性匹配，不能假定所有二进制资源都会进入 LFS。不要无理由复制、重新导出或替换大文件。
 - 二进制资源无法有效文本审查。替换时记录来源、用途、尺寸/压缩变化，并验证 Unity Import Settings 和运行时显示。
 - 保留第三方文件的许可证头和原始结构。修改第三方代码必须是最小补丁，并在交付说明中明确指出。
 - 根目录未提供统一许可证，不要假定项目素材或第三方资源允许外部分发。
@@ -112,7 +112,18 @@ Remove-Item "C:\path\to\file.txt"
 
 ## 验证流程
 
-仓库当前没有自定义自动化测试。根据改动范围执行尽可能完整的验证：
+仓库已引入 Unity Test Framework：
+
+- Edit Mode（`Assets/Tests/EditMode`）：场景常量、全局状态、触控与拼图、地图生命周期和场景接线检查。
+- Play Mode（`Assets/Tests/PlayMode`）：音频开关、6 个构建场景加载及 Editor 中 `Scan → Navigation` 的地图信息交接。
+
+批处理运行方式：
+
+```powershell
+& "<Unity-Editor-Path>\Unity.exe" -batchmode -nographics -projectPath "<repo-root>" -runTests -testPlatform EditMode -testResults results.xml
+```
+
+根据改动范围执行尽可能完整的验证：
 
 ### 纯文档改动
 
