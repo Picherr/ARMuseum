@@ -93,7 +93,7 @@ ARMuseum/
 当前 EasyAR 依赖是本地包，清单中的路径为：
 
 ```json
-"com.easyar.sense": "file:D:/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package"
+"com.easyar.sense": "file:D:/0Source/EasyARPlugin/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package"
 ```
 
 该路径不会随仓库一起提供。首次打开项目之前，需要完成以下一种处理：
@@ -144,8 +144,8 @@ EasyAR 配置位于 `Assets/XR/Settings/EasyAR Settings.asset`，其中包含许
 - 多个脚本此前用 `GameObject.Find`、`Resources.Load`、场景名及对象名硬编码；重构后大多数 `GameObject.Find` 已改为 `[SerializeField]` 字段，但重命名场景、层级对象或资源前仍应先搜索所有引用。
 - 中英文资源遵循 `Assets/Resources/UI/<类型>/<cn|en>/<名称>_<cn|en>` 的路径约定，修改命名会影响 `LanguageSwitch` 和 `NavInfoController`。
 - `StreamingAssets` 中目标图片与同名 `.etd` 数据应成对维护。
-- 部分业务脚本使用 GBK 兼容编码，批量格式化或统一转码可能制造大范围无关差异；修改时应检查中文注释和字符串是否保持正确。
-- 仓库包含大量模型、PSD、BMP、PNG 和音频资源，当前未配置 Git LFS。替换大文件前应评估仓库体积和团队协作影响。
+- `Assets/Resources/Scripts` 下的业务脚本已统一为 UTF-8（包括兼容 UTF-8 的 ASCII 文件）。修改时保留中文注释和字符串，不要批量转码或全文件格式化；第三方文件仍应逐个核对原有编码。
+- 仓库已通过 `.gitattributes` 为模型、图像、音频和字体配置部分扩展名的 Git LFS 规则；当前 `git lfs ls-files` 为空，现有资源及历史尚未迁移到 LFS。规则未包含 `.etd`，且除 `.FBX` 外未单独列出大写扩展名；添加资源前应检查属性匹配，不能假定所有二进制格式均已覆盖。替换大文件前仍应评估仓库体积和团队协作影响。
 - 不要在没有明确需求时修改 `Assets/Common`、`Assets/Plugins` 或 `Assets/BuildReport` 内的第三方代码。
 
 更详细的协作和自动化代理规则见 [AGENTS.md](AGENTS.md)。

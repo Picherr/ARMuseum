@@ -73,19 +73,19 @@
 - 对 `FindObjectOfType`、`GameObject.Find`、`Resources.Load` 和 Inspector 引用增加必要的空值保护，但不要在未验证场景绑定时进行大范围重构。
 - 保留由 UI 和场景序列化绑定的方法签名。需要破坏性调整时，同时更新所有场景、预制体和 UnityEvent。
 - 新日志应说明场景或功能上下文，避免每帧输出；不要记录许可证、API Key、API Secret、地图服务密钥或其他敏感值。
-- 业务脚本存在 ASCII/UTF-8 与 GBK 兼容编码混用。读取中文乱码时先按 GBK 检查；不要把转码、全文件格式化和功能改动混在同一提交中。
+- `Assets/Resources/Scripts` 下的业务脚本已统一为 UTF-8（包括兼容 UTF-8 的 ASCII 文件），修改时保持编码和中文内容，不要批量转码或全文件格式化。第三方文件的编码应逐个检查；出现乱码时先核对原始编码，不要直接按 UTF-8 重写。
 - 删除无用代码前确认没有 UnityEvent、动画事件、反射或序列化引用。
 
 ## EasyAR 与 Vuforia
 
-- `Packages/manifest.json` 中 EasyAR 当前使用开发机绝对路径 `file:D:/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package`。在其他机器上验证前需要将该依赖改为有效路径或恢复同一路径。
+- `Packages/manifest.json` 中 EasyAR 当前使用开发机绝对路径 `file:D:/0Source/EasyARPlugin/EasyARSenseUnityPlugin_4.6.2+3022.b15d4240/package`。在其他机器上验证前需要将该依赖改为有效路径或恢复同一路径。
 - 不要静默升级 EasyAR。升级时应单独说明版本、迁移影响，并验证图像跟踪、稀疏空间地图、Android 构建和所有 EasyAR 场景组件。
 - `Assets/XR/Settings/EasyAR Settings.asset` 含许可证和服务配置。读取时必须遮蔽敏感值；不要把值复制到回复、日志、测试快照或新文档。
 - `Assets/Common` 的 Vuforia 程序集通过 `VUFORIA_ENABLED` 和包版本定义保护。不要为了让 EasyAR 功能工作而安装 Vuforia，也不要移除这些条件约束，除非任务明确要求迁移或清理。
 
 ## 大文件与第三方资源
 
-- 仓库当前没有 `.gitattributes`/Git LFS 配置，但包含大型 FBX、PSD、BMP、PNG 和 MP3。不要无理由复制、重新导出或替换大文件。
+- 仓库已有 `.gitattributes`，为模型、图像、音频和字体的部分扩展名配置 Git LFS；当前 `git lfs ls-files` 为空，尚未迁移现有资源或重写历史。规则未包含 `.etd`，且除 `.FBX` 外未单独列出大写扩展名，新增或替换资源前必须核对属性匹配，不能假定所有二进制资源都会进入 LFS。不要无理由复制、重新导出或替换大文件。
 - 二进制资源无法有效文本审查。替换时记录来源、用途、尺寸/压缩变化，并验证 Unity Import Settings 和运行时显示。
 - 保留第三方文件的许可证头和原始结构。修改第三方代码必须是最小补丁，并在交付说明中明确指出。
 - 根目录未提供统一许可证，不要假定项目素材或第三方资源允许外部分发。
