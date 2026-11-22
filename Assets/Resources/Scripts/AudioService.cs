@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace ARMuseum
@@ -12,7 +11,7 @@ namespace ARMuseum
     /// </summary>
     public class AudioService : MonoBehaviour
     {
-        // 静音开关角色：Start 里接线 Audio 按钮；纯 SFX 实例设为 false
+        // 静音开关角色：启用时接线 Audio 按钮；纯 SFX 实例设为 false
         [SerializeField] private bool handleAudioToggle = true;
 
         public GameObject AudioOn;
@@ -27,23 +26,42 @@ namespace ARMuseum
         [SerializeField] private Sprite voicePressedSprite; // UI/Button/AClick/语音
 
         private AudioSource _audioSource;
+        private Button _boundButton;
+        private Coroutine _audioHintCoroutine;
 
-        private void Start()
+        private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+        }
 
-            if (!handleAudioToggle)
-                return;
-            if (SceneManager.GetActiveScene().name == SceneNames.Navigation)
+        private void OnEnable()
+        {
+            SynchronizeAudioState();
+            AudioTurnOff();
+
+            if (!handleAudioToggle || audioButton == null)
                 return;
 
-            if (audioButton != null)
-                audioButton.onClick.AddListener(Audio);
+            _boundButton = audioButton;
+            _boundButton.onClick.AddListener(Audio);
+        }
+
+        private void OnDisable()
+        {
+            if (_boundButton != null)
+                _boundButton.onClick.RemoveListener(Audio);
+            _boundButton = null;
+
+            StopAudioHint();
+            AudioTurnOff();
         }
 
         // SFX 播放（原 AudioManager.AudioPlay）
         public void AudioPlay(AudioClip clip)
         {
+            // 静音时不排队播放提示音，恢复声音后也不会补播。
+            if (!AppState.IsAudioOn || clip == null)
+                return;
             if (_audioSource == null)
                 _audioSource = GetComponent<AudioSource>();
             if (_audioSource != null)
@@ -52,39 +70,57 @@ namespace ARMuseum
 
         public void Audio()
         {
-            Sprite sprite1;
-            Sprite sprite2;
-
-            if (AppState.IsAudioOn) // 当前声音功能开启
-            {
-                sprite1 = muteNormalSprite;
-                sprite2 = mutePressedSprite;
-                AudioOff.SetActive(true);
-            }
-            else
-            {
-                sprite1 = voiceNormalSprite;
-                sprite2 = voicePressedSprite;
-                AudioOn.SetActive(true);
-            }
-            audioButton.image.sprite = sprite1;
-            SpriteState spriteState = new SpriteState();
-            spriteState.pressedSprite = sprite2;
-            audioButton.spriteState = spriteState;
-
             AppState.IsAudioOn = !AppState.IsAudioOn;
-            StartCoroutine(DelayThenAudioTurnOff());
+            SynchronizeAudioState();
+
+            StopAudioHint();
+            AudioTurnOff();
+            if (!isActiveAndEnabled)
+                return;
+
+            GameObject hint = AppState.IsAudioOn ? AudioOn : AudioOff;
+            if (hint != null)
+            {
+                hint.SetActive(true);
+                _audioHintCoroutine = StartCoroutine(DelayThenAudioTurnOff());
+            }
+        }
+
+        private void SynchronizeAudioState()
+        {
+            // BGM 与提示音共用全局听众状态，场景重建时保留用户开关设置。
+            AudioListener.pause = !AppState.IsAudioOn;
+            if (audioButton == null)
+                return;
+
+            if (audioButton.image != null)
+                audioButton.image.sprite = AppState.IsAudioOn ? voiceNormalSprite : muteNormalSprite;
+            SpriteState spriteState = audioButton.spriteState;
+            spriteState.pressedSprite = AppState.IsAudioOn ? voicePressedSprite : mutePressedSprite;
+            audioButton.spriteState = spriteState;
+        }
+
+        private void StopAudioHint()
+        {
+            if (_audioHintCoroutine == null)
+                return;
+
+            StopCoroutine(_audioHintCoroutine);
+            _audioHintCoroutine = null;
         }
 
         private void AudioTurnOff()
         {
-            AudioOn.SetActive(false);
-            AudioOff.SetActive(false);
+            if (AudioOn != null)
+                AudioOn.SetActive(false);
+            if (AudioOff != null)
+                AudioOff.SetActive(false);
         }
 
         private IEnumerator DelayThenAudioTurnOff()
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSecondsRealtime(1.0f);
+            _audioHintCoroutine = null;
             AudioTurnOff();
         }
     }

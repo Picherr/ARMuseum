@@ -59,7 +59,7 @@
 - 场景和预制体优先使用匹配版本的 Unity Editor 修改。确需文本编辑 YAML 时，只做局部改动，并检查 YAML 结构、fileID、GUID 和换行未被批量重写。
 - 修改 `MonoBehaviour` 的字段名或类型会影响已有序列化数据。需要重命名时考虑 `FormerlySerializedAs`，并检查所有场景和预制体实例。
 - 被 UnityEvent、Button 或动画事件调用的 `public` 方法可能没有普通 C# 调用方；搜索不到代码引用不代表可以删除或重命名。
-- 大多数业务脚本已把 `GameObject.Find` 硬编码路径改为 `[SerializeField]` 字段，但 `Navigation/BuildController` 仍用 `GameObject.Find`（其 `Scan` 场景缺 `SceneMaster` 预制体，路径已失效）。层级调整前必须搜索并同步调用方。
+- 业务控制器优先使用 `[SerializeField]` 引用；`Scan` 的建图界面和 `BuildController` 已显式接线。层级调整前必须搜索并同步调用方，避免破坏建图、定位及 UI 引用。
 - `Resources.Load` 路径依赖文件位置和命名。中英文 UI 保持 `<name>_cn`、`<name>_en` 后缀以及现有 `cn`/`en` 目录结构。
 - EasyAR 目标数据使用目标图片与 `.etd` 文件配对。修改目标图后应使用正确 EasyAR 工具重新生成数据并在真机验证。
 - 不要无目的地触发全项目重导入、材质升级、纹理重新压缩或序列化版本升级。
@@ -114,8 +114,8 @@ Remove-Item "C:\path\to\file.txt"
 
 仓库已引入 Unity Test Framework：
 
-- Edit Mode（`Assets/Tests/EditMode`）：`SceneNames`、`AppState` 纯逻辑测试。
-- Play Mode（`Assets/Tests/PlayMode`）：`SceneLoader` 逐一加载 Build Settings 中 6 个应用场景的冒烟测试。
+- Edit Mode（`Assets/Tests/EditMode`）：场景常量、全局状态、触控与拼图、地图生命周期和场景接线检查。
+- Play Mode（`Assets/Tests/PlayMode`）：音频开关、6 个构建场景加载及 Editor 中 `Scan → Navigation` 的地图信息交接。
 
 批处理运行方式：
 

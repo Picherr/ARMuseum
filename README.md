@@ -71,7 +71,7 @@ ARMuseum/
 | `SceneNames` / `SceneLoader` | 场景名常量与场景跳转统一入口（静态） |
 | `AppState` | 应用级全局状态（语言、音频开关） |
 | `SceneNavigation` | 各 `changeToXXX` 场景跳转方法，供按钮 onClick 引用 |
-| `AudioService` | 音频统一服务：SFX 播放、静音开关；背景音乐由 `BGM.prefab` 的 AudioSource 直接播放 |
+| `AudioService` | SFX 播放和全局静音控制；启用时同步开关与图标，背景音乐仍由 `BGM.prefab` 的 AudioSource 播放 |
 | `TipController` | 启动页提示与触摸提示 |
 | `GamePanelController` | 美玉大观场景的游戏面板与拼图提示 |
 | `WireFrameController` | 南越文帝 / 海路扬帆场景的线框图切换 |
@@ -132,10 +132,11 @@ EasyAR 配置位于 `Assets/XR/Settings/EasyAR Settings.asset`，其中包含许
 
 1. 在 Editor 中打开 `Assets/Scenes/Scan.unity`，或在需要发布地图构建工具时将它加入构建列表。
 2. 在支持运动跟踪的真机上扫描环境；进入 Tracking 状态后填写地图名称并保存。
-3. 保存成功后，`BuildController` 会把 `MapID` 和 `MapName` 写入 `PlayerPrefs`。
-4. 在 `Navigation` 场景中使用相同的地图 ID 和名称启动定位。
+3. 填写非空地图名称并在跟踪稳定后保存。上传期间禁止重复保存，成功后 `BuildController` 会把 `MapID` 和 `MapName` 写入并保存到 `PlayerPrefs`。
+4. 点击“前往定位”进入 `Navigation`；地图 ID 和名称为空时，会自动回填上次保存的信息。
+5. 确认 ID 和名称后，先点击“加载地图”，加载成功后再点击“开始定位”；定位时可点击“停止定位”。切换地图前先停止定位，再修改输入并重新加载。
 
-当前 `LocalizeController` 会在场景启动时立即调用定位，且读取 `PlayerPrefs` 的条件写成了 `inputID.text.Length < 0`，该条件不会成立。调试导航时应先确保场景输入框或 `MapManagerSource` 已配置正确；若要依赖 Scan 到 Navigation 的自动传递，需要先修正并验证这段逻辑。
+`Scan` 的界面和建图组件使用 Inspector 引用；`Navigation` 不会在启动时自动下载或定位。地图加载、卸载和上传失败后应按界面提示重试；实际服务权限、网络、运动跟踪和定位效果仍需在 Android 真机验证。
 
 ## 开发注意事项
 
@@ -153,8 +154,10 @@ EasyAR 配置位于 `Assets/XR/Settings/EasyAR Settings.asset`，其中包含许
 
 仓库已引入 Unity Test Framework：
 
-- Edit Mode（`Assets/Tests/EditMode`）：`SceneNames` 常量与场景资源对应、`AppState` 默认值与读写。
-- Play Mode（`Assets/Tests/PlayMode`）：`SceneLoader` 逐一加载 Build Settings 中 6 个应用流程场景的冒烟测试。
+- Edit Mode（`Assets/Tests/EditMode`）：场景常量与全局状态、拼图和触控切换、地图保存/失败恢复、地图场景引用和字体完整性。
+- Play Mode（`Assets/Tests/PlayMode`）：音频开关与生命周期、6 个构建场景加载，以及 Editor 中 `Scan → Navigation` 的按钮跳转和地图信息回填。
+
+Windows Editor 不提供地图场景所需的移动端运动跟踪源。场景冒烟测试仅把 SDK 对该设备限制的特定诊断列为预期，其他错误仍会使测试失败；这些测试不能替代 Android 真机的扫描、上传与定位验证。
 
 运行方式：Test Runner 窗口，或批处理 `Unity.exe -batchmode -runTests -testPlatform EditMode|PlayMode`。
 

@@ -3,6 +3,7 @@
     "rootNamespace": "",
     "references": [
         "ARMuseum.Runtime",
+        "EasyAR.Sense",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

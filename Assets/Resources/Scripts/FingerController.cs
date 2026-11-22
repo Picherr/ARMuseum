@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,100 +17,177 @@ namespace ARMuseum
         public Vector3 initialRot;
         public Vector3 initialSca;
         public static FingerController instance;
-        IEnumerator ie;
-        FingerIE finger_num = FingerIE.zero;
+        private FingerIE finger_num = FingerIE.zero;
+        private int firstFingerId;
+        private int secondFingerId;
+        private float previousDistance;
+        private readonly Dictionary<int, bool> uiTouches = new Dictionary<int, bool>();
+        private readonly List<RaycastResult> raycastResults = new List<RaycastResult>();
+        private PointerEventData pointerData;
+        private EventSystem pointerEventSystem;
 
-        void Awake()
+        void OnEnable()
         {
             instance = this;
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if(Input.touchCount==0)
+            ProcessTouches(Input.touches);
+        }
+
+        // 每帧使用同一份触摸快照，不在协程恢复后访问已经抬起的手指。
+        private void ProcessTouches(Touch[] touches)
+        {
+            foreach (var touch in touches)
             {
-                if(finger_num!=FingerIE.zero)
+                if (!IsActive(touch))
                 {
-                    StopCoroutine(ie);
-                    ie = null;
-                    finger_num = FingerIE.zero;
+                    uiTouches.Remove(touch.fingerId);
+                }
+                else if (touch.phase == TouchPhase.Began || !uiTouches.ContainsKey(touch.fingerId))
+                {
+                    uiTouches[touch.fingerId] = IsOverUI(touch);
                 }
             }
-            else if(Input.touchCount==1)
+
+            if (touches.Length == 0)
             {
-                if(finger_num!=FingerIE.OneFinger)
+                uiTouches.Clear();
+            }
+            if (touches.Length < 1 || touches.Length > 2 || !CanUseTouch(touches[0]) ||
+                (touches.Length == 2 && !CanUseTouch(touches[1])))
+            {
+                EndGesture();
+                return;
+            }
+
+            var first = touches[0];
+            if (touches.Length == 1)
+            {
+                if (finger_num != FingerIE.OneFinger || firstFingerId != first.fingerId)
                 {
-                    if(ie!=null)
-                    {
-                        StopCoroutine(ie);
-                    }
-                    ie = IMonitorMouseOneFinger();
-                    StartCoroutine(ie);
+                    EndGesture();
                     finger_num = FingerIE.OneFinger;
+                    firstFingerId = first.fingerId;
+                    return;
+                }
+                if (first.phase == TouchPhase.Moved)
+                {
+                    transform.Rotate(-Vector3.up * first.deltaPosition.x * 0.2f, Space.Self);
+                }
+                return;
+            }
+
+            var second = touches[1];
+            float distance = Vector2.Distance(first.position, second.position);
+            if (finger_num != FingerIE.TwoFinger || firstFingerId != first.fingerId ||
+                secondFingerId != second.fingerId)
+            {
+                EndGesture();
+                finger_num = FingerIE.TwoFinger;
+                firstFingerId = first.fingerId;
+                secondFingerId = second.fingerId;
+                previousDistance = distance;
+                return;
+            }
+
+            float step = distance > previousDistance ? 0.01f : distance < previousDistance ? -0.01f : 0f;
+            if (step != 0f)
+            {
+                float scaleChange = Mathf.Clamp(transform.localScale.x + step, 0.05f, 1.5f) - transform.localScale.x;
+                transform.localScale += Vector3.one * scaleChange;
+            }
+            previousDistance = distance;
+        }
+
+        private bool CanUseTouch(Touch touch)
+        {
+            bool isUI;
+            return IsActive(touch) && uiTouches.TryGetValue(touch.fingerId, out isUI) && !isUI;
+        }
+
+        private static bool IsActive(Touch touch)
+        {
+            return touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled;
+        }
+
+        private bool IsOverUI(Touch touch)
+        {
+            var eventSystem = EventSystem.current;
+            if (eventSystem == null)
+            {
+                return false;
+            }
+            if (pointerData == null || pointerEventSystem != eventSystem)
+            {
+                pointerEventSystem = eventSystem;
+                pointerData = new PointerEventData(eventSystem);
+            }
+            pointerData.Reset();
+            pointerData.pointerId = touch.fingerId;
+            pointerData.position = touch.position;
+            raycastResults.Clear();
+            eventSystem.RaycastAll(pointerData, raycastResults);
+            foreach (var result in raycastResults)
+            {
+                if (result.module is GraphicRaycaster && BlocksModelGesture(result.gameObject))
+                {
+                    return true;
                 }
             }
-            else if(Input.touchCount==2)
+            return false;
+        }
+
+        private static bool BlocksModelGesture(GameObject target)
+        {
+            if (target == null)
             {
-                if(finger_num!=FingerIE.TwoFinger)
-                {
-                    if(ie!=null)
-                    {
-                        StopCoroutine(ie);
-                    }
-                    ie = IIMonitorMouseTwoFinger();
-                    StartCoroutine(ie);
-                    finger_num = FingerIE.TwoFinger;
-                }
+                return false;
+            }
+            // 透明的 ScrollRect 子图、按钮和拼图片仍属于 UI；只有无交互的透明装饰允许穿透。
+            if (target.GetComponentInParent<Selectable>() != null ||
+                ExecuteEvents.GetEventHandler<IPointerDownHandler>(target) != null ||
+                ExecuteEvents.GetEventHandler<IPointerClickHandler>(target) != null ||
+                ExecuteEvents.GetEventHandler<IDragHandler>(target) != null ||
+                ExecuteEvents.GetEventHandler<IScrollHandler>(target) != null)
+            {
+                return true;
+            }
+            var graphic = target.GetComponent<Graphic>();
+            return graphic == null || graphic.color.a > 0f;
+        }
+
+        private void EndGesture()
+        {
+            finger_num = FingerIE.zero;
+            firstFingerId = -1;
+            secondFingerId = -1;
+            previousDistance = 0f;
+        }
+
+        private void OnDisable()
+        {
+            EndGesture();
+            uiTouches.Clear();
+            if (instance == this)
+            {
+                instance = null;
             }
         }
 
-        IEnumerator IMonitorMouseOneFinger()
+        private void OnApplicationFocus(bool hasFocus)
         {
-            Touch oneFingerTouch;
-            while(true)
+            if (!hasFocus)
             {
-                oneFingerTouch = Input.GetTouch(0);
-                if(oneFingerTouch.phase==TouchPhase.Moved)
-                {
-                    Vector2 deltaPos = oneFingerTouch.deltaPosition;
-                    transform.Rotate(-Vector3.up * deltaPos.x * 0.2f, Space.Self);
-                }
-                yield return 0;
-            }
-        }
-
-        IEnumerator IIMonitorMouseTwoFinger()
-        {
-            Touch firstOldTouch;
-            Touch secondOldTouch;
-            Touch firstNewTouch;
-            Touch secondNewTouch;
-            float oldDistance;
-            float newDistance;
-
-            while(true)
-            {
-                firstOldTouch = Input.GetTouch(0);
-                secondOldTouch = Input.GetTouch(1);
-                oldDistance = Vector2.Distance(firstOldTouch.position, secondOldTouch.position);
-                yield return 0;
-                firstNewTouch = Input.GetTouch(0);
-                secondNewTouch = Input.GetTouch(1);
-                newDistance = Vector2.Distance(firstNewTouch.position, secondNewTouch.position);
-                if (oldDistance > newDistance && this.transform.localScale.x > 0.05f)
-                {
-                    this.transform.localScale -= Vector3.one * 0.01f;
-                }
-                else if (oldDistance < newDistance && this.transform.localScale.x < 1.5f)
-                {
-                    this.transform.localScale += Vector3.one * 0.01f;
-                }
+                EndGesture();
+                uiTouches.Clear();
             }
         }
 
         public void ResetRot()
         {
+            EndGesture();
             this.transform.localEulerAngles = initialRot;
             this.transform.localScale = initialSca;
         }

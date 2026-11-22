@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ARMuseum
 {
@@ -9,76 +9,141 @@ namespace ARMuseum
     {
         public Vector3 initialSca;
         public static MapSizeController instance;
-        IEnumerator ie;
-        FingerIE finger_num = FingerIE.zero;
-
-        // 存储当前拖拽图片的RectTransform组件
+        private bool isPinching;
+        private int firstFingerId;
+        private int secondFingerId;
+        private float previousDistance;
         private RectTransform m_rt;
+        private ScrollRect scrollRect;
+        private bool scrollRectSuspended;
+        private bool scrollRectWasEnabled;
+        private readonly List<RaycastResult> raycastResults = new List<RaycastResult>();
+        private PointerEventData pointerData;
+        private EventSystem pointerEventSystem;
 
         void Awake()
+        {
+            m_rt = GetComponent<RectTransform>();
+            scrollRect = GetComponentInParent<ScrollRect>();
+        }
+
+        void OnEnable()
         {
             instance = this;
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            m_rt = gameObject.GetComponent<RectTransform>();
-        }
-
-        // Update is called once per frame
         void Update()
         {
-            if (Input.touchCount == 0)
+            ProcessTouches(Input.touches);
+        }
+
+        private void ProcessTouches(Touch[] touches)
+        {
+            if (touches.Length != 2 || !IsActive(touches[0]) || !IsActive(touches[1]))
             {
-                if (finger_num != FingerIE.zero)
+                EndGesture();
+                return;
+            }
+
+            var first = touches[0];
+            var second = touches[1];
+            float distance = Vector2.Distance(first.position, second.position);
+            if (!isPinching || firstFingerId != first.fingerId || secondFingerId != second.fingerId)
+            {
+                EndGesture();
+                if (!IsTouchOnMap(first) || !IsTouchOnMap(second))
                 {
-                    StopCoroutine(ie);
-                    ie = null;
-                    finger_num = FingerIE.zero;
+                    return;
+                }
+                isPinching = true;
+                firstFingerId = first.fingerId;
+                secondFingerId = second.fingerId;
+                previousDistance = distance;
+                if (scrollRect != null)
+                {
+                    scrollRectWasEnabled = scrollRect.enabled;
+                    scrollRectSuspended = true;
+                    scrollRect.StopMovement();
+                    scrollRect.enabled = false;
+                }
+                return;
+            }
+
+            float step = distance > previousDistance ? 0.01f : distance < previousDistance ? -0.01f : 0f;
+            if (step != 0f)
+            {
+                float scaleChange = Mathf.Clamp(transform.localScale.x + step, 1f, 1.5f) - transform.localScale.x;
+                transform.localScale += new Vector3(scaleChange, scaleChange * 1536f / 2048f, 0f);
+            }
+            previousDistance = distance;
+        }
+
+        private bool IsTouchOnMap(Touch touch)
+        {
+            if (m_rt == null)
+            {
+                return false;
+            }
+            var eventSystem = EventSystem.current;
+            if (eventSystem == null)
+            {
+                return false;
+            }
+            if (pointerData == null || pointerEventSystem != eventSystem)
+            {
+                pointerEventSystem = eventSystem;
+                pointerData = new PointerEventData(eventSystem);
+            }
+            pointerData.Reset();
+            pointerData.pointerId = touch.fingerId;
+            pointerData.position = touch.position;
+            raycastResults.Clear();
+            eventSystem.RaycastAll(pointerData, raycastResults);
+            foreach (var result in raycastResults)
+            {
+                if (result.module is GraphicRaycaster)
+                {
+                    return result.gameObject != null && result.gameObject.transform.IsChildOf(transform);
                 }
             }
-            else if (Input.touchCount == 2)
+            return false;
+        }
+
+        private static bool IsActive(Touch touch)
+        {
+            return touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled;
+        }
+
+        private void EndGesture()
+        {
+            if (scrollRectSuspended)
             {
-                if (finger_num != FingerIE.TwoFinger)
+                scrollRectSuspended = false;
+                if (scrollRect != null)
                 {
-                    if (ie != null)
-                    {
-                        StopCoroutine(ie);
-                    }
-                    ie = IIMonitorMouseTwoFinger();
-                    StartCoroutine(ie);
-                    finger_num = FingerIE.TwoFinger;
+                    scrollRect.enabled = scrollRectWasEnabled;
                 }
+            }
+            isPinching = false;
+            firstFingerId = -1;
+            secondFingerId = -1;
+            previousDistance = 0f;
+        }
+
+        private void OnDisable()
+        {
+            EndGesture();
+            if (instance == this)
+            {
+                instance = null;
             }
         }
 
-        IEnumerator IIMonitorMouseTwoFinger()
+        private void OnApplicationFocus(bool hasFocus)
         {
-            Touch firstOldTouch;
-            Touch secondOldTouch;
-            Touch firstNewTouch;
-            Touch secondNewTouch;
-            float oldDistance;
-            float newDistance;
-
-            while(true)
+            if (!hasFocus)
             {
-                firstOldTouch = Input.GetTouch(0);
-                secondOldTouch = Input.GetTouch(1);
-                oldDistance = Vector2.Distance(firstOldTouch.position, secondOldTouch.position);
-                yield return 0;
-                firstNewTouch = Input.GetTouch(0);
-                secondNewTouch = Input.GetTouch(1);
-                newDistance = Vector2.Distance(firstNewTouch.position, secondNewTouch.position);
-                if(oldDistance > newDistance && this.transform.localScale.x > 1.0f)
-                {
-                    this.transform.localScale -= new Vector3(0.01f, 0.01f / 2048 * 1536, 0f);
-                }
-                else if(oldDistance < newDistance && this.transform.localScale.x < 1.5f)
-                {
-                    this.transform.localScale += new Vector3(0.01f, 0.01f / 2048 * 1536, 0f);
-                }
+                EndGesture();
             }
         }
     }
